@@ -1,3 +1,4 @@
+git commit and add all commands  then run this command --->
 git remote add origin git@github.com:Rushi99999/Cdac_Notes.git
 ssh-keygen -t ed25519 -C "rushibhondave5046@gmail.com"
 eval $(ssh-agent -s)
