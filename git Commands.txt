@@ -1,0 +1,5 @@
+git remote add origin git@github.com:Rushi99999/Cdac_Notes.git
+ssh-keygen -t ed25519 -C "rushibhondave5046@gmail.com"
+eval $(ssh-agent -s)
+cat  ~/.ssh/id_ed25519.pub
+git push -u origin master
