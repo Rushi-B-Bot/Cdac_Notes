@@ -7,6 +7,16 @@ git push -u origin master
 
 Plugin org.codehaus.mojo:exec-maven-plugin:3.1.0 or one of its dependencies could not be resolved
 
-Plugin org.codehaus.mojo:exec-maven-plugin:3.1.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.codehaus.mojo:exec-maven-plugin:jar:3.1.0: The following artifacts could not be resolved: org.codehaus.mojo:exec-maven-plugin:pom:3.1.0 (absent): Could not transfer artifact org.codehaus.mojo:exec-maven-plugin:pom:3.1.0 from/to central (https://repo.maven.apache.org/maven2): Connect to repo.maven.apache.org:443 [repo.maven.apache.org/151.101.0.215] failed: Connect timed out -> [Help 1]
-org.apache.maven.plugin.PluginResolutionException: Plugin org.codehaus.mojo:exec-maven-plugin:3.1.0 or one of its dependencies could not be resolved: Failed to read artifact descriptor for org.codehaus.mojo:exec-maven-plugin:jar:3.1.0
-    at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve (DefaultPluginDependenciesResolver.java:132)
+<mirror>
+<id>mirror1</id>
+<mirrorOf>central</mirrorOf>
+<name>mirror1</name>
+<url>https://repo.maven.apache.org/maven2/</url>
+</mirror>
+
+
+<mirror>
+<id>google-maven-central</id>
+<name>Google Maven Central</name>
+<url>https://maven-central.storage.googleapis.com/maven2/</url> <mirrorOf>central</mirrorOf>
+</mirror>
