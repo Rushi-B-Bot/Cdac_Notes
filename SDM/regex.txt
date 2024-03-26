@@ -1,0 +1,59 @@
+Using “\” (a backslash) to match the special symbol
+
+#!/bin/sh
+
+# Basic Regular Expression
+
+# 5. Using “\” to match the special symbol
+
+# loading the text file
+
+fruits_file=`cat fruit.txt | grep  “\ “`
+
+echo “5. Using ‘\’ to find out all the fruits name that has single space in their full name”
+
+# displaying output
+
+echo “Output:”
+
+echo “$fruits_file”
+
+==========================
+Using “()” (braces) to match the group of regexp.
+
+#!/bin/sh
+
+# Basic Regular Expression
+
+# 6. Using “()” (braces) to match the group of regexp.
+
+# loading the text file
+
+fruits_file=`cat fruit.txt | grep -E “(fruit)”`
+
+echo “6. Using ‘()’ to find out all the fruits name that has word ‘fruit’ in it”
+
+# displaying output
+
+echo “Output:”
+
+===========================
+Using “?”(question mark) to find all the matching characters
+
+#!/bin/sh
+
+# Basic Regular Expression
+
+# 7. Using “?”(question mark) to match the  
+
+# loading the text file
+
+fruits_file=`cat fruit.txt | grep -E Ch?`
+
+echo “7. Using ‘?’ to find out all the fruits name that has ‘Ch’ in it”
+
+# displaying output
+
+echo “Output:”
+
+echo “$fruits_file”
