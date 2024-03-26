@@ -13,32 +13,32 @@ git push -u origin master
 <url>https://repo.maven.apache.org/maven2/</url>
 </mirror>
 
+import java.util.Scanner;
 
-    public class HelloWorld {
+public class ExpandedForm {
     public static void main(String[] args) {
-        int number = 1234;
-        System.out.println("Expanded Form of " + number + " is: " + expandedForm(number));
-    }
+        Scanner scanner = new Scanner(System.in);
 
-    public static String expandedForm(int num) {
-        String strNum = String.valueOf(num);
-        StringBuilder result = new StringBuilder();
-        
-        for (int i = 0; i < strNum.length(); i++) {
-            int digit = Character.getNumericValue(strNum.charAt(i));
-            int zeros = strNum.length() - 1 - i;
-            
-            if (digit != 0) {
-                if (i != 0) {
-                    result.append(" + ");
-                }
-                result.append(digit);
-                for (int j = 0; j < zeros; j++) {
-                    result.append("0");
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        printExpandedForm(number);
+  
+    }
+    
+    public static void printExpandedForm(int number) {
+        String numString = String.valueOf(number);
+        int length = numString.length();
+        System.out.print("Expanded form: ");
+        for (int i = 0; i < length; i++) {
+            int digit = Character.getNumericValue(numString.charAt(i));
+            int placeValue = (int) Math.pow(10, length - i - 1);
+            int expanded = digit * placeValue;
+            if (expanded != 0) {
+                System.out.print(expanded);
+                if (i < length - 1) {
+                    System.out.print(" + ");
                 }
             }
         }
-        
-        return result.toString();
     }
 }
