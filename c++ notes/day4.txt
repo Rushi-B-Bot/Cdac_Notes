@@ -1,0 +1,531 @@
+-===========================================================
+
+//accept no of subjects and name from the user dynamically and accept marks for each subject and display average and name of the student
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n,m,i,sum=0;
+	cout<<"accept no of subjects\n";
+	cin>>n;
+	cout<<"accept no of character\n";
+	cin>>m;
+	int * p_marks=new int [n];
+	char * p_name=new char[m];
+	cout<<"accept marks\n";
+	for(i=0;i<n;i++)
+	{
+		cin>>p_marks[i];
+	}
+	for(i=0;i<n;i++)
+	{
+		sum=sum + p_marks[i];
+	}
+	cout<<"accept name\n";
+	cin>>p_name;
+	float avg=(float)sum/n;
+	cout<<"average is  "<<avg;
+	cout<<"name is  "<<p_name;
+	delete [] p_name;
+	delete[] p_marks;
+}
+
+#include<iostream> 
+using namespace std; 
+class complex
+{
+public:
+	static int real,img;
+public:
+	static void add(complex&,complex&);
+	complex()
+	{
+	}
+	complex(int r,int i)
+	{
+    real=r;
+    img=i;
+		
+	}
+	void display()
+	{
+		cout<<"complex no is "<<real<<"+"<<img<<"i"<<endl;
+	}
+	
+};
+int complex::real;
+int complex::img;
+void complex::add(complex& c1,complex& c2)
+{
+	
+	cout<<c1.real + c2.real;
+	cout<<c1.img + c2.img;
+
+	}
+int main()
+{
+	complex c1(1,2);
+	complex c2(3,4);
+	complex::add(c1,c2);
+
+
+	getchar();
+	getchar();
+    return 0; 
+    return 0;
+}
+
+
+==================================
+#include<iostream> 
+using namespace std; 
+class complex
+{
+	
+	 int real,img;
+public:
+	 complex add(complex&,complex&,int);
+	complex()
+	{
+		
+	}
+	complex(int real,int img)
+	{
+		this->real=real;
+		this->img=img;
+	}
+	void display()
+	{
+		cout<<"complex no is "<<real<<"+"<<img<<"i"<<endl;
+	}
+	
+};
+
+complex complex::add(complex& c1,complex& c2,int num)
+{
+	complex temp;
+	temp.real=c1.real + c2.real+num;
+	temp.img=c1.img + c2.img+num;
+	return temp;
+
+	}
+int main()
+{
+	int num;
+	cout<<"enter num";
+
+	cin>>num;
+	complex c3;
+	complex c1(1,2);
+	complex c2(3,4);
+	c3=c3.add(c1,c2,num);
+    c3.display();
+
+	getchar();
+	getchar();
+    return 0; 
+    return 0;
+}
+
+=======================================================
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+Object created on heap
+
+The new operator is used to create objects dynamically and the delete operator is used to delete objects dynamically. 
+The dynamic objects can be created with the help of pointers.
+
+Syntax:
+
+ClassName *ptr_obj;              // pointer to object
+ptr_obj = new ClassName    // Dynamic object creation
+
+Classname  * pointername=new classname(arguments);
+
+/*#include<iostream>
+using namespace std;
+class student
+{
+	int rollno;
+	char name[20];
+	public:
+	void display();
+	student(int,char *);
+};
+student::student(int r,char * sptr)
+{
+	rollno=r;
+	strcpy(name,sptr);
+}
+void student::display()
+{
+	cout<<"rollno is "<<rollno<<endl;
+	cout<<"name = "<<name<<endl;
+	cout<<"\n";
+}
+int main()
+{
+	student * ptr=new student(1,"rahul");
+	ptr->display();
+	
+}
+-----------------------------------------------------------------------------------------------
+
+Need for deletion of the object:
+To avoid memory leak as when an object is created dynamically using new, it occupies memory in the Heap Section.
+
+Program 1: Create an object of the class which is created dynamically using the new operator and deleting it explicitly 
+using the delete operator:
+// C++ program to implement  dynamic objects 
+#include<iostream> 
+using namespace std; 
+ class Test 
+{ 
+    int a, b; 
+    public: 
+           Test() 
+        { 
+            cout << "Constructor is called" <<  endl; 
+            a = 1; 
+            b = 2; 
+        }; 
+        
+        // Function to print values 
+        // of data members 
+        void show() 
+        { 
+            cout << "a = " <<  
+                     a << endl; 
+            cout << "b = " <<  
+                     b << endl; 
+        } 
+}; 
+int main() 
+{ 
+ 
+    Test *ptr;          
+     ptr = new Test;   
+    ptr->show();      
+        
+    return 0; 
+}
+Output
+Constructor is called
+a = 1
+b = 2
+
+
+
+// C++ program to create an array of 
+// objects 
+#include <iostream> 
+using namespace std; 
+  
+// Class 
+class Student { 
+  
+public: 
+    // Constructor 
+    Student() 
+    { 
+        cout << "Constructor is called!\n"; 
+    } 
+  
+     
+    // Function to display message 
+    void write() 
+    { 
+        cout << "Writing!\n"; 
+    } 
+};
+int main() 
+{ 
+    // Create an array of the object 
+    // dynamically 
+    Student* student = new Student[3]; 
+  
+    // Function Call to write() 
+    student[0].write(); 
+    student[1].write(); 
+    student[2].write(); 
+  
+        return 0; 
+}
+Output:
+Constructor is called!
+Constructor is called!
+Constructor is called!
+Writing!
+Writing!
+Writing!
+
+
+
+Note:new operator internally invokes the function operator new() which in turn invokes the function malloc()
+delete operator internally invokes the function operator delete() which in turn invokes the function free()
+malloc and free() can be used in c++.but for the ease of use,new and delete operator are preferred.
+
+The following are the advantages of the new operator over malloc() function:
+1)It does not use the sizeof() operator as it automatically computes the size of the data object.
+2)It automatically returns the correct data type pointer, so it does not need to use the typecasting.
+
+Differences between the malloc() and new
+1)The new operator constructs an object, i.e., it calls the constructor to initialize an object while malloc() function does not call the constructor. The new operator invokes the constructor, and the delete operator invokes the destructor to destroy the object. This is the biggest difference between the malloc() and new.
+// C++ program to illustrate malloc()
+// and new operator in C++
+#include "bits/stdc++.h"
+using namespace std;
+ 
+// Class A
+class A {
+    int a;
+ 
+public:
+    int* ptr;
+ 
+    // Constructor of class A
+    A()
+    {
+        cout << "Constructor was Called!"
+             << endl;
+    }
+};
+ 
+// Driver Code
+int main()
+{
+ 
+    // Create an object of class A
+    // using new operator
+    A* a = new A;
+    cout << "Object of class A was "
+         << "created using new operator!"
+         << endl;
+ 
+    // Create an object of class A
+    // using malloc operator
+    A* b = (A*)malloc(sizeof(A));
+    cout << "Object of class A was "
+         << "created using malloc()!"
+         << endl;
+ 
+    return 0;
+}
+Output
+Constructor was Called!
+Object of class A was created using new operator!
+Object of class A was created using malloc()!
+In the above program we can clearly see that while creating object using new operator Default Constructor was called and using malloc function Default Constructor was not called.
+
+2)The new is an operator, while malloc() is a predefined function in the stdlib header file.
+
+3)If the sufficient memory is not available in a heap, then the new operator will throw an exception while the malloc() function returns a NULL pointer.
+
+4In the case of a new operator, we have to use the delete operator to deallocate the memory. But in the case of malloc() function, we have to use the free() function to deallocate the memory.
+
+ 
+=========================
+
+=======================================================================================
+Dynamic initialization of object in C++
+
+==>Dynamic initialization of object refers to initializing the objects at a run time i.e., the initial value of an object is provided during run time.
+==>It can be achieved by using constructors and by passing parameters to the constructors.
+==>This comes in really handy when there are multiple constructors of the same class with different inputs.
+==>Dynamic initialization of the object using a constructor is beneficial when the data is of different formats.
+
+Dynamic Constructor:
+
+The constructor used for allocating the memory at runtime for attribute of an object is known as the dynamic constructor.
+The memory is allocated at runtime using a new operator and similarly, memory is deallocated at runtime using the delete operator.
+
+Ex:
+// C++ program for dynamic allocation
+#include <iostream>
+using namespace std;
+ class Demo {
+    int* ptr;
+ public:
+~Demo()
+{
+delete ptr;
+}
+      Demo()
+    {
+        // Dynamically initializing ptr using new
+        ptr = new int;
+        *ptr = 10;
+    }
+     // Function to display the value of ptr
+    void display()
+    {
+        cout << *ptr << endl;
+    }
+};
+ int main()
+{
+    Demo obj1;
+     obj1.display();
+obj1.~Demo();
+
+
+
+}
+
+Output
+10
+In the above example, new is used to dynamically initialize the variable in default constructor and memory is allocated on the heap.
+The objects of the class Demo calls the function and it displays the value of dynamically allocated variable i.e ptr.
+
+
+
+#include<iostream>
+using namespace std;
+class string1
+{
+	int len;
+	char *ptr;
+public:
+	void chardisplay();
+	string1();
+	string1(char*);
+	void stringdisplay();
+	string1(char,int);
+	string1(int);
+};
+string1::string1()
+{
+	len=1;
+	ptr=new char[len];//new char[1],new char;
+	*ptr='A';
+}
+void string1::chardisplay()
+{
+	cout<<"length is "<<len<<endl;
+	cout<<"character is "<<*ptr<<endl;
+}
+void string1::stringdisplay()
+{
+	cout<<"length is "<<len<<endl;
+	cout<<"string is "<<ptr<<endl;
+}
+string1::string1(char * sptr)
+{
+	len=strlen(sptr);
+	ptr=new char[len+1];
+	strcpy(ptr,sptr);
+}
+string1::string1(char ch,int l)
+{
+	int i;
+	len=l;
+	ptr=new char[len+1 ];
+	
+	for(i=0;i<len;i++)
+	{
+		ptr[i]=ch;
+	}
+	ptr[i]='\0';
+}
+string1::string1(int l)
+{
+	int i;
+	len=l;
+	ptr=new char[len+1];
+	cout<<"accept string\n";
+	cin>>ptr;
+	strcpy(ptr,"rohit");
+
+	/*cout<<"accept character by character\n";
+	for(i=0;i<len;i++)
+	{
+		cin>>ptr[i];
+	}
+	ptr[i]='\0';*/
+}
+int main()
+{
+	string1 c1;
+	c1.chardisplay();
+	string1 c2("rahul");
+	c2.stringdisplay();
+	string1 c3('*',60);
+	c3.stringdisplay();
+	string1 c4(5);
+	c4.stringdisplay();
+}
+#include<iostream>
+using namespace std;
+class temp
+{
+	int *ptr;
+	int size;
+public:
+	temp();
+	void get();
+	void show();
+	int max();
+	int min();
+};
+temp::temp()
+{
+	cout<<"how many elements do u want to store\n";
+	cin>>size;	
+	ptr=new int[size];
+}
+void temp::get()
+{
+	cout<<"accept elements\n";
+	for(int i=0;i<size;i++)
+	cin>>ptr[i];
+}
+void temp::show()
+{
+	cout<<"value are\n";
+	for(int i=0;i<size;i++)
+	cout<<ptr[i]<<"\n";
+}
+int temp::max()
+{
+	int m=ptr[0];
+	for(int i=1;i<size;i++)
+	if(ptr[i]>m)
+	m=ptr[i];
+	return m;
+}
+int temp::min()
+{
+	int m=ptr[0];
+	for(int i=1;i<size;i++)
+	if(ptr[i]<m)
+	m=ptr[i];
+	return m;
+}
+int main()
+{
+	temp a;
+	a.get();
+	a.show();
+	cout<<"maximum number is "<<a.max()<<endl;
+	cout<<"minimum number is "<<a.min()<<endl;
+}
+
