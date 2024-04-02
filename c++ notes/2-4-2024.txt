@@ -1,0 +1,1053 @@
+==> Generic Programming 
+  Generic Programming is implemented to increase the efficiency of the code. Generic Programming enables the programmer to write a general algorithm which will work with all data types. It eliminates the need to create different algorithms if the data type is an integer, string or a character. The advantages of Generic Programming are
+Code Reusability
+Avoid Function Overloading
+Once written it can be used for multiple times and cases.
+
+Generics can be implemented in C++ using Templates.
+
+Templates
+
+==>A template is a simple yet very powerful tool in C++. The simple idea is to pass the data type as a parameter so that we don’t need to write the same code for different data types. For example, a software company may need to sort() for different data types. Rather than writing and maintaining multiple codes, we can write one sort() and pass the datatype as a parameter. 
+
+==>  It allows you to define the generic classes and generic functions and thus provides support for generic programming. Generic programming is a technique where generic types are used as parameters in algorithms so that they can work for a variety of data types.
+
+==>How Do Templates Work?
+Templates are expanded at compiler time. This is like macros. The difference is, that the compiler does type-checking before template expansion. The idea is simple, source code contains only function/class, but compiled code may contain multiple copies of the same function/class. 
+
+=========================================================================
+Templates can be represented in two ways:
+
+Function template 
+==>We can define a template for a function. For example, if we have an add() function, we can create versions of the add function for adding the int, float or double type values.
+==>We write a generic function that can be used for different data types. Examples of function templates are sort(), max(), min(), printArray(). 
+==>Function Template is used to write generic functions that can be used with different datatypes.The method of Generic Programming is implemented to increase the efficiency of the code.
+==>The types of parameters passed to it during its call decide the actual data types which the function will operate upon. Generic functions are like 'write once use multiple times'.
+For example, Quick sorting algorithm is implemented using a generic function, it can be implemented to an array of integers or array of floats.
+==>This generality of coding reduces the programmers efforts of writing multiple  function definitions having the same implementation or algorithm for different datatypes that might be passed to it. This saves time,disk space,and efforts to rewrite the source code.
+==>==>Function templates are special functions that can operate with generic types. This allows creating a function template whose functionality can be adapted to more than one type without repeating the entire code for each type.
+
+A Generic function is created by using the keyword template. The template defines what function will do.
+
+Syntax of Function Template
+
+template < class Ttype> 
+ret_type func_name(parameter_list)  
+{  
+    // body of function.  
+}  
+Where Ttype: It is a placeholder name for a data type used by the function and this list is called as template parameter list and it cannot be empty. It is used within the function definition. It is only a placeholder that the compiler will automatically replace this placeholder with the actual data type.
+
+#include <iostream>  
+using namespace std;  
+template<class T> 
+T add(T &a,T &b)  
+{  
+    T result = a+b;  
+    return result;  
+      
+}  
+int main()  
+{  
+  int i =2;  
+  int j =3;  
+  float m = 2.3;  
+  float n = 1.2;  
+  cout<<"Addition of i and j is :"<<add(i,j);  
+  cout<<'\n';  
+  cout<<"Addition of m and n is :"<<add(m,n);  
+  return 0;  
+}
+  Addition of i and j is :5
+Addition of m and n is :3.5
+In the above example, we create the function template which can perform the addition operation on any type either it can be integer, float or double.
+===================================================================
+
+#include<iostream>
+using namespace std;
+template <class T>
+void swap1(T &x, T &y)
+{
+   T temp;
+   temp=x;
+   x=y;
+   y=temp;
+}
+ int main()
+{
+    
+    int a=10,b=20;
+char x='A',y='B';
+    swap1(a,b);
+	cout<<a<<b<<endl;
+swap1(x,y);
+cout<<x<<y;
+ 
+}
+==============================================================
+Function Templates with Multiple Parameters
+We can use more than one generic type in the template function by using the comma to separate the list.
+
+Syntax
+ template<class T1, class T2,.....>  
+return_type function_name (arguments of type T1, T2....)  
+{  
+    // body of function.  
+}  
+In the above syntax, we have seen that the template function can accept any number of arguments of a different type.
+
+
+#include <iostream>  
+using namespace std;  
+template<class X,class Y> 
+void fun(X a,Y b)  
+{  
+    std::cout << "Value of a is : " <<a<< std::endl;  
+    std::cout << "Value of b is : " <<b<< std::endl;  
+}  
+  
+int main()  
+{  
+   fun(15,12.3);  
+   
+   return 0;  
+}  
+Output:
+
+Value of a is : 15
+Value of b is : 12.3
+In the above example, we use two generic types in the template function, i.e., X and Y.
+============================================================================
+#include <iostream> 
+using namespace std; 
+template <class T ,class Y> 
+T myMax(T x, Y y)
+{
+    return (x > y) ? x : y;
+}
+ 
+int main()
+{
+    
+    cout << myMax(3, 'a') << endl;
+   
+    cout << myMax<double>(3,4 ) << endl;
+   
+    cout << myMax('g', 'e') << endl;
+ 
+    return 0;
+}
+========================================================================
+Overloading a Function Template
+We can overload the generic function means that the overloaded template functions can differ in the parameter list.
+
+
+#include <iostream>  
+using namespace std;  
+template<class X> 
+void fun(X a)  
+{  
+    std::cout << "Value of a is : " <<a<< std::endl;  
+}  
+template<class X,class Y> 
+void fun(X b ,Y c)  
+{  
+    std::cout << "Value of b is : " <<b<< std::endl;  
+    std::cout << "Value of c is : " <<c<< std::endl;  
+}  
+int main()  
+{  
+   fun(10);  
+   fun(20,30.5);  
+   return 0;  
+}  
+Output:
+
+Value of a is : 10
+Value of b is : 20
+Value of c is : 30.5
+In the above example, template of fun() function is overloaded.
+=========================================================================
+A program to display the name and the eno of the employee by using multitpLe parameter in the function template.
+
+#include <iostream>  
+using namespace std;  
+template<class t1,class t2>
+void display(t1 * x, t2 y)
+{  
+
+cout<<"name is "<<x;
+cout<<"eno or salary is "<<y;
+}
+int main()
+{
+int a;
+	display(&a,1);
+	display("suresh",2);
+}
+===========================================================
+
+#include <iostream>  
+using namespace std;  
+template<class t1,class t2>
+void display(t1 * x, t2 y)
+{  
+
+cout<<"name is "<<x<<endl;;
+cout<<"eno or salary is "<<y<<endl;
+}
+int main()
+{
+int a;
+	display(&a,1);
+	display("suresh",5678.89);
+}
+=========================================================================
+CLASS TEMPLATE
+
+Class Template can also be defined similarly to the Function Template. When a class uses the concept of Template, then the class is known as generic class.
+
+Syntax
+template<class Ttype>  
+class class_name  
+{  
+  .  
+  .  
+}  
+Ttype is a placeholder name which will be determined when the class is instantiated. We can define more than one generic data type using a comma-separated list. The Ttype can be used inside the class body.
+
+Now, we create an instance of a class
+
+class_name<type> ob;  
+where class_name: It is the name of the class.
+type: It is the type of the data that the class is operating on.
+
+ob: It is the name of the object.
+
+Let's see a simple example:
+
+#include <iostream>  
+using namespace std;  
+template<class T>  
+class A   
+{  
+    public:  
+    T num1 ;  
+    T num2 ;  
+    void add()  
+    {  
+        std::cout << "Addition of num1 and num2 : " << num1+num2<<std::endl;  
+    }  
+      
+};  
+  
+int main()  
+{  
+    A<int> d;  
+    d.add();  
+    return 0;  
+}  
+Output:
+
+Addition of num1 and num2 : 11
+In the above example, we create a template for class A. Inside the main() method, we create the instance of class A named as, 'd'.
+
+CLASS TEMPLATE WITH MULTIPLE PARAMETERS
+We can use more than one generic data type in a class template, and each generic data type is separated by the comma.
+
+Syntax
+template<class T1, class T2, ......>   
+class class_name  
+{  
+   // Body of the class.  
+}  
+Let's see a simple example when class template contains two generic data types.
+
+#include <iostream>  
+     using namespace std;  
+     template<class T1, class T2>  
+    class A   
+    {  
+         T1 a;  
+         T2 b;  
+         public:  
+        A(T1 x,T2 y)  
+       {  
+           a = x;  
+           b = y;  
+        }  
+           void display()  
+          {  
+                 std::cout << "Values of a and b are : " << a<<" ,"<<b<<std::endl;  
+           }  
+      };  
+  
+      int main()  
+     {  
+           A<int,float> d(5,6.5);  
+           d.display();  
+           return 0;  
+     }  
+Output:
+
+Values of a and b are : 5,6.5
+=========================================================================
+#include <iostream>  
+     using namespace std;  
+     template<class T>
+    class A   
+    {  
+	public:
+         T a, b;  
+         public:  
+        void display(T,T);
+};
+  template<class T>
+
+          void A<T>:: display(T a ,T b)  
+          {  
+                 std::cout << "Values of a and b are : " << a<<" ,"<<b<<std::endl;  
+           }  
+   
+  
+      int main()  
+     {  
+           A<int> d;  
+           d.display(5,6);  
+		A<char> d1;  
+           d1.display('a','b');
+           return 0;  
+     } 
+
+
+========================================================================
+The template can contain multiple arguments, and we can also use the non-type arguments In addition to the type T argument, we can also use other types of arguments such as strings, function names, constant expression and built-in types. Let' s see the following example:
+
+template<class T, int size>  
+class array  
+{  
+        T arr[size];           // automatic array initialization.  
+};  
+In the above case, the nontype template argument is size and therefore, template supplies the size of the array as an argument.
+
+Arguments are specified when the objects of a class are created:
+
+array<int, 15> t1;                        // array of 15 integers.  
+array<float, 10> t2;                    // array of 10 floats.   
+array<char, 4> t3;                      // array of 4 chars.                
+Let's see a simple example of nontype template arguments.
+
+#include <iostream>  
+using namespace std;  
+template<class T, int size>  
+class A   
+{  
+    public:  
+    T arr[size];  
+    void insert()  
+    {  
+        int i =1;  
+        for (int j=0;j<size;j++)  
+        {  
+            arr[j] = i;  
+            i++;  
+        }  
+    }  
+      
+    void display()  
+    {  
+        for(int i=0;i<size;i++)  
+        {  
+            std::cout << arr[i] << " ";  
+        }  
+    }  
+};  
+int main()  
+{  
+    A<int,10> t1;  
+    t1.insert();  
+    t1.display();  
+    return 0;  
+}  
+Output:
+
+1 2 3 4 5 6 7 8 9 10
+In the above example, the class template is created which contains the nontype template argument, i.e., size. It is specified when the object of class 'A' is created.
+
+=========================================
+Default parameters for templates in C++: Like function default arguments, templates can also have default arguments. For example, in the following program, the second parameter U has the default value as char.
+   
+#include <iostream>  
+using namespace std;
+template<class T, class U = char>   
+  class A 
+{ 
+public: 
+    T x; 
+    U y;
+	void add()
+	{
+		cin>>x>>y;
+		cout<<x+y<<endl;
+	 } 
+}; 
+  
+int main() 
+{ 
+    A<int> a;
+	a.add(); 
+    A<int, int> b; 
+   b.add(); 
+    return 0; 
+} 
+======================================================
+The task is to implement some important functions of stack like pop(), push(), display(), topElement(), isEmpty(), isFull() using class template in C++. Stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+
+The simple idea is to pass data type as a parameter so that we don’t need to write the same code for different data types. For example, a software company may need sort() for different data types. Rather than writing and maintaining the multiple codes, we can write one sort() and pass data type as a parameter.
+
+C++ adds two new keywords to support templates: ‘template’ and ‘typename’. The second keyword can always be replaced by the keyword ‘class’.
+
+Illustration:
+
+
+Consider an example of plates stacked over one another in the canteen. The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottommost position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO(Last In First Out)/FILO(First In Last Out) order.
+
+Example:
+
+C++14
+   
+// C++ Program to Implement stack using Class Templates
+ 
+// Including input output libraries
+#include <iostream>
+// Header File including all string functions
+#include <string>
+ 
+using namespace std;
+ 
+#define SIZE 5
+ 
+template <class T> 
+class Stack {
+
+public:
+     Stack();
+    void push(T k);
+ 
+       T pop();
+ 
+    // To print top element in stack using peek() method
+    T topElement();
+ 
+       // To check whether stack is full using isFull() method
+    bool isFull();
+ 
+    // To check whether stack is empty using isEmpty() method
+    bool isEmpty();
+ 
+private:
+    // Taking data member top
+    int top;
+     // Initialising stack(array) of given size
+    T st[SIZE];
+};
+ 
+template <class T> 
+Stack<T>::Stack()
+ { top = -1; }
+ 
+template <class T> 
+void Stack<T>::push(T k)
+{
+ 
+    // Checking whether stack is completely filled
+    if (isFull()) {
+        // Display message when no elements can be pushed
+        // into it
+        cout << "Stack is full\n";
+    }
+ 
+    // Inserted element
+    cout << "Inserted element " << k << endl;
+ 
+  
+    top = top + 1;
+ 
+    // Now, adding element to stack
+    st[top] = k;
+}
+ 
+
+// To check if the stack is empty
+template <class T>
+ bool Stack<T>::isEmpty()
+{
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+ 
+// To check if the stack is full or not
+template <class T>
+ bool Stack<T>::isFull()
+{
+    // Till top in inside the stack
+    if (top == (SIZE - 1))
+        return 1;
+    else
+ 
+        // As top can not exceeds th size
+        return 0;
+}
+ 
+
+template <class T> T Stack<T>::pop()
+{
+    // Initialising a variable to store popped element
+    T popped_element = st[top];
+ 
+    // Decreasing the top as
+    // element is getting out from the stack
+    top--;
+ 
+    // Returning the element/s that is/are popped
+    return popped_element;
+}
+ 
+template <class T> 
+T Stack<T>::topElement()
+{
+    // Initialising a variable to store top element
+    T top_element = st[top];
+ 
+    // Returning the top element
+    return top_element;
+}
+ 
+int main()
+{
+ 
+    Stack<int> integer_stack;
+    Stack<string> string_stack;
+    integer_stack.push(2);
+    integer_stack.push(54);
+    integer_stack.push(255);
+ 
+     string_stack.push("Welcome");
+    string_stack.push("to");
+    string_stack.push("cpp");
+ 
+       cout << integer_stack.pop() << " is removed from stack"
+         << endl;
+ 
+    
+    cout << string_stack.pop() << " is removed from stack "
+         << endl;
+ 
+       cout << "Top element is " << integer_stack.topElement()
+         << endl;
+ 
+    // Print and display the top element in string stack
+    cout << "Top element is " << string_stack.topElement()
+         << endl;
+ 
+    return 0;
+}===========================================================================
+
+#include <iostream>
+using namespace std;
+int main() {
+
+  int numbers[5];
+  cout << "Enter 5 numbers: " << endl;
+ //  store input from user to array
+  for (int i = 0; i < 5; ++i) {
+    cin >> numbers[i];// cin >> *(numbers+i);
+  }
+  cout << "The numbers are: ";
+  //  print array elements
+  for (int n = 0; n < 5; ++n) {
+    cout << numbers[n] << "  ";//  cout <<*(numbers+i);
+  }
+
+  return 0;
+}
+
+==================================================
+//The C++ Program to Illustrate How to Find the Size of an Array
+
+#include <iostream> 
+using namespace std; 
+  int main() 
+{ 
+    int arr[] = { 1, 2, 3, 4, 5 }; 
+     // Size of one element of an array 
+    cout << "Size of arr[0]: " << sizeof(arr[0]) << endl; 
+  
+    // Size of array 'arr' 
+    cout << "Size of arr: " << sizeof(arr) << endl; 
+  
+    // Length of an array 
+    int n = sizeof(arr) / sizeof(arr[0]); 
+  
+    cout << "Length of an array: " << n << endl; 
+  
+    return 0; 
+}
+================================================================
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+    // Defining an array 
+    int arr[] = { 1, 2, 3, 4 }; 
+  
+    // Define a pointer 
+    int* ptr = arr; 
+  
+    // Printing address of the arrary using array name 
+    cout << "Memory address of arr: " << &arr[0] << endl; 
+  
+    // Printing address of the array using ptr 
+    cout << "Memory address of arr: " << ptr << endl; 
+  
+    return 0; 
+}
+=======================================================
+// C++ Program to Illustrate that Array Name is a Pointer 
+// that Points to First Element of the Array 
+#include <iostream> 
+using namespace std; 
+ 
+
+// C++ Program to Print Array Elements without Indexing 
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+  
+    // Define an array 
+    int arr[] = { 11, 22, 33, 44 }; 
+  
+    // Print elements of an array 
+    cout << "first element: " << *arr << endl; 
+    cout << "Second element: " << *(arr + 1) << endl; 
+    cout << "Third element: " << *(arr + 2) << endl; 
+    cout << "fourth element: " << *(arr + 3) << endl; 
+  
+    return 0; 
+}
+
+======================================================
+// c++ program to illustrate the two dimensional array 
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+    // Declaring 2D array 
+    int arr[4][4]; 
+  
+    // Initialize 2D array using loop 
+    for (int i = 0; i < 4; i++) { 
+        for (int j = 0; j < 4; j++) { 
+         cin >>   *(*(arr+i)+j) ;
+        } 
+    } 
+  
+    // Printing the element of 2D array 
+    for (int i = 0; i < 4; i++) { 
+        for (int j = 0; j < 4; j++) { 
+            cout << *(*(arr+i)+j)  << " \t"; 
+        } 
+        cout << endl; 
+    } 
+  
+    return 0; 
+}
+===========================================================
+//Array of Integer pointers
+#include <iostream>  
+using namespace std;  
+int main()  
+{ 
+    int ptr1[5]; // integer array declaration  
+    int *ptr2[5]; // integer array of pointer declaration  
+    cout << "Enter five numbers :" <<endl;  
+    for(int i=0;i<5;i++)  
+    {  
+        cin >> ptr1[i];  
+    }  
+    for(int i=0;i<5;i++)  
+    {  
+        ptr2[i]=&ptr1[i];   
+    }    
+  cout << "The values are" << endl; 
+    for(int i=0;i<5;i++)  
+    {  
+        cout << *ptr2[i] << endl;  
+    }
+	
+    } 
+=================================================================
+Array of Pointer to Strings
+
+==>An array of pointers to strings is a data structure that holds multiple pointers, each pointing to a string. It allows you to store and manipulate a collection of strings in memory.
+==>An array of pointer to strings is an array of character pointers that holds the address of the first character of a string or we can say the base address of a string.
+
+The following are the differences between an array of pointers to string and two-dimensional array of characters:
+==>An array of pointers to string is more efficient than the two-dimensional array of characters in case of memory consumption because an array of pointer to strings consumes less memory than the two-dimensional array of characters to store the strings.
+==>In an array of pointers, the manipulation of strings is comparatively easier than in the case of 2d array. We can also easily change the position of the strings by using the pointers.
+
+
+
+
+
+
+#include <iostream>  
+using namespace std;  
+
+
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+  char names[5][8] = {"rohan","geeta","rahul","rohit","rachana"};  
+    for(int i=0;i<=5;i++)  
+    { 
+		 cout << names[i] << endl; 
+		 cout<< *names[i]<<endl;
+		 cout<<*(names+1)+0<<endl;
+    }
+    cout<<"---------------------------------------";
+    for(int i=0;i<=5;i++)  
+    { 
+        for(int j=0;j<=5;j++)
+        {
+            cout<< names[i][j];
+        }
+        cout<<endl;
+    }
+    cout<<"======================================="<<endl;
+    for(int i=0;i<=5;i++)  
+    { 
+        for(int j=0;j<=5;j++)
+        {
+            cout<<*(names+i)+j<<endl;
+        }
+        cout<<endl;
+    }
+    
+    cout<<sizeof(names); 
+}  
+
+==========================================
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+  char *names[5] = {"rohan","ram","rahul","rohit","rachanahhhhhhhhhhhhhhhhhhhhhhhh"};  
+for(int i=0;i<=5;i++)  
+    { 
+		int j=0; 
+        cout << names[i] << endl; 
+	 cout << (names+i) << endl; 
+	  cout << *(names+i) << endl;
+		   		   cout << *(*(names+i)+j);
+		   cout<<endl;
+    }  
+    cout<<sizeof(names); 
+}  
+======================================================================
+operator overloading
+
+Suppose there is a need to add two complex numbers, a function Add() can be written in the class and used as follows:
+c3=c1.Add(c2);// c1,c2,c3 are the objects of complex class
+
+==>However, it would be more natural if it is written as c1+c2.But the + operator in c++ works only for numeric built-in datatypes and c1 and c2 are user defined datatypes.As compiler doesot know the behaviour of any operator with UDTs ,if an operator is used with them,compiler gives an error.
+==>To overcome such problems,c++ provides the feature of operator overloading. The '+' operator can be overloaded for a class and how to add objects can be specified.This bringd UDTs closer to built-in types.
+
+==>operator overloading gives additional meaning to the existing operator like +,-,*,/ etc. Giving additional meaning doesnot mean a radical change,but an extension in the default behaviour of the operator. operator overloading helps the compiler to perform this type of operation when it is applied on UDTs. With the help of operator oerloading one can use the existing operators on UDTs. 
+
+==>By using operator overloading we can add 2 userdefined datatypes also.we are giving extra task to an existing operator.
+it gives additional meaning to the existing operator.this features makes UDTs more natural and close to built in datatypes.
+
+==>the main idea behind “Operator overloading” is to use C++ operators with class variables or class objects. Redefining the meaning of operators really does not change their original meaning; instead, they have been given additional meaning along with their existing ones.
+
+==>operator keyword is used to implement operator overloading.overloaded operators are implemented as function.An overloaded operator is called an operator function. An operator function is declared with the keyword operator preceding the operator.
+ex:to overload the addition operator,a function called operator+ can be defined and implemented.
+
+
+syntax:
+returntype operator symbol(arg-list)
+{
+}
+ 
+return_type class_name  : : operator op(argument_list)  
+{  
+     // body of the function.  
+}  
+Where the return type is the type of value returned by the function.
+
+class_name is the name of the class.
+
+operator op is an operator function where op is the operator being overloaded, and the operator is the keyword.
+
+
+Rules and Regulations
+========================================================================================
+1)New operators cannot be defined or invented ..extending the meaning of the operators doesnot mean giving new meaning to the operators.
+2)one cannot change the precedence or associativity of the operators.
+3)one cannot change the arity of the operator.
+4)we cannot overload membership operator(.),scope resolution operator(::),ternary operator,sizeof operator.
+5) For operator overloading to work, at least one of the operands must be a user-defined class object.
+================================================
+#include<iostream>
+using namespace std;
+class complex
+{
+	int real,img;
+
+public:
+	complex();
+	complex(int,int);
+	void display();
+	complex operator+(complex&);
+	complex operator-(complex&);
+	complex operator-();
+	
+	
+};
+complex::complex()
+{
+	real=img=0;
+}
+complex::complex(int real,int img)
+{
+	this->real=real;
+	this->img=img;
+}
+void complex::display()
+{
+	if(img>0)
+	cout<<"complex number is "<<real<<"+"<<img<<"i"<<endl;
+	else
+	cout<<"complex number is "<<real<<img<<"i"<<endl;
+}
+complex complex::operator+(complex & c)
+{
+	complex temp;
+	temp.real=this->real + c.real;
+	temp.img=this->img + c.img;
+	return temp;
+}
+complex complex::operator-(complex & c)
+{
+	complex temp;
+	temp.real=this->real - c.real;
+	temp.img=this->img -c.img;
+	return temp;
+}
+complex complex::operator-()
+{
+	complex temp;
+	temp.real=(this->real * -1);
+	temp.img=-this->img;
+	return temp;
+}
+ 
+int main()
+{
+	/*complex c1(1,2);
+	complex c2(3,4);
+	complex c3=c1+c2;//c3=c1.operator+(c2)
+	c3.display();*/
+/*	complex c1(3,4);
+	complex c2(4,5);
+	complex c3=c1-c2;//c3=c1.operator-(c2)
+	c3.display();*/
+
+	complex c1(5,6);
+	complex c2=-c1;//c2=c1.operator-()
+	c2.display();
+	
+}
+
+=====================================
+#include<iostream>
+using namespace std;
+class complex
+{
+	int real,img;
+
+public:
+	complex();
+	complex(int,int);
+	void display();
+	void operator-();
+	
+	
+};
+complex::complex()
+{
+	real=img=0;
+}
+complex::complex(int real,int img)
+{
+	this->real=real;
+	this->img=img;
+}
+void complex::display()
+{
+	if(img>0)
+	cout<<"complex number is "<<real<<"+"<<img<<"i"<<endl;
+	else
+	cout<<"complex number is "<<real<<img<<"i"<<endl;
+}
+
+void complex::operator-()
+{
+	
+	real=(this->real * -1);
+	img=-this->img;
+	
+}
+ 
+int main()
+{
+	complex c1(5,6);
+	-c1;//c1.operator-()
+	c1.display();
+	
+}
+
+
+
+
+
+
+
+
+
+=======================================================
+#include<iostream>
+using namespace std;
+class complex
+{
+	int real,img;
+public:
+	complex(int,int);
+	void display();
+	
+	
+	complex operator++();
+	 complex operator++(int);
+	 complex();
+};
+complex::complex()
+{
+	real=img=0;
+}
+complex::complex(int real,int img)
+{
+	this->real=real;
+	this->img=img;
+}
+void complex::display()
+{
+	if(img>0)
+	cout<<"complex number is "<<real<<"+"<<img<<"i"<<endl;
+	else
+	cout<<"complex number is "<<real<<img<<"i"<<endl;
+}
+
+complex complex::operator++()//pre
+{
+	++this->real;//this->real=this->real + 1
+	++this->img;
+	return (*this);
+}
+complex complex::operator++(int)
+{
+	complex temp= (*this);
+	++this->real;
+	++this->img;
+	return temp;
+}
+int main()
+{
+	complex c1(1,2);
+	complex c2=++c1;//c2=c1.operator++()
+	c1.display();
+	c2.display();
+
+	complex c3(4,2);
+	complex c4=c3++;//c4=c3.operator++(0);
+	c3.display();
+	c4.display();
+
+}
+
+==================================================
+
+//overloading of decrement operator
+#include<iostream>
+using namespace std;
+class complex
+{
+	int real,img;
+public:
+	complex(int,int);
+	void display();
+	
+	complex operator-();
+	complex operator--();
+	 complex operator--(int);
+	 complex();
+};
+complex::complex()
+{
+	real=img=0;
+}
+complex::complex(int real,int img)
+{
+	this->real=real;
+	this->img=img;
+}
+void complex::display()
+{
+	if(img>0)
+	cout<<"complex number is "<<real<<"+"<<img<<"i"<<endl;
+	else
+	cout<<"complex number is "<<real<<img<<"i"<<endl;
+}
+
+complex complex::operator--()//pre
+{
+	--this->real;//this->real=this->real + 1
+	--this->img;
+	return (*this);
+}
+complex complex::operator--(int)
+{
+	complex temp= (*this);
+	--this->real;
+	--this->img;
+	return temp;
+}
+int main()
+{
+	complex c1(1,2);
+	complex c2=--c1;//c2=c1.operator--()
+	c1.display();
+	c2.display();
+
+	/*complex c1(1,2);
+	complex c2=c1--;//c2=c1.operator--(0);
+	c1.display();
+	c2.display();*/
+
+}
