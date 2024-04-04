@@ -1,0 +1,1096 @@
+
+======================================================================================
+Example :
+#include <iostream>    
+using namespace std;    
+class Box    
+{    
+    private:    
+        int length;    
+    public:    
+        Box(){
+ length=0;  }    
+        friend int printLength(Box); //friend function    
+};    
+int printLength(Box b)    
+{    
+   b.length += 10;    
+    return b.length;    
+}    
+int main()    
+{    
+    Box b;    
+    cout<<"Length of box: "<< printLength(b)<<endl;    
+    return 0;    
+}    
+Output:
+
+Length of box: 10  
+=============================================================
+
+==================================================================================
+C++ Program to swap two members using Friend Function
+
+Approach: 
+Create a class Swap, declare three variables in it, i.e., a, b, and temp and create a constructor for inputs. Declare a friend function in it. Define the friend function outside the class scope by taking arguments as call by reference to pass the copy of Swap Object. Perform the swap operation with Swap variables.
+
+   
+// C++ Program to swap two numbers using friend function
+#include <iostream>
+ using namespace std;
+ class Swap {
+ 
+    // Declare the variables of Swap Class
+    int temp, a, b;
+ 
+public:
+ 
+    // Define the parameterized constructor, for inputs
+    Swap(int a, int b)
+    {
+        this->a = a;
+        this->b = b;
+    }
+ 
+    // Declare the friend function to swap, take arguments  as call by reference
+    friend void swap1(Swap&);
+};
+ 
+// Define the swap function outside class scope
+void swap1(Swap& s1)
+{
+    // Call by reference is used to passed object copy to
+    // the function
+    cout << "\nBefore Swapping: " << s1.a << " " << s1.b;
+ 
+    // Swap operations with Swap Class variables
+    s1.temp = s1.a;
+    s1.a = s1.b;
+    s1.b = s1.temp;
+    cout << "\nAfter Swapping: " << s1.a << " " << s1.b;
+}
+ 
+// Driver Code
+int main()
+{
+      Swap s(4, 6);
+    swap1(s);
+    return 0;
+}
+
+Output: 
+Before Swapping: 4 6
+After Swapping: 6 4
+
+
+========================================================
+Approach 2:
+Approach: 
+Create a class Swap, declare one variable in it, i.e., num and create a constructor for inputs. Declare a friend function in it. Define the friend function outside the class scope by taking arguments as call by reference to pass the copy of Swap Object. Perform the swap operation.
+
+   
+//C++ Program to swap data members of two objects of a class using friend function.
+#include <iostream> 
+   
+using namespace std; 
+   
+class Swap { 
+   
+    // Declare the variable of Swap Class 
+    int num;
+   
+public: 
+   
+    // Define the parameterized constructor, for input. 
+    Swap(int num) 
+    { 
+        this->num = num; 
+    } 
+   
+    // Declare the friend function to swap, take arguments  
+    // as call by reference 
+    friend void swap(Swap&, Swap&); 
+}; 
+   
+// Define the swap function outside class scope 
+void swap(Swap& s1, Swap& s2) 
+{ 
+    // declare a temporary variable.
+    int temp;
+    // Call by reference is used to passed object copy to 
+    // the function 
+    cout << "\nBefore Swapping: " << s1.num << " " << s2.num; 
+   
+    // Swap operations with objects of class Swap
+    temp = s1.num; 
+    s1.num = s2.num; 
+    s2.num = temp; 
+    cout << "\nAfter Swapping: " << s1.num << " " << s2.num; 
+} 
+   
+// Driver Code 
+int main() 
+{ 
+    // Declare and Initialize the objects of Swap class
+    Swap s1(6), s2(10); 
+    swap(s1,s2); 
+    return 0; 
+} 
+===================================================================
+ difference between Static Function and Friend Function:
+
+
+Static Function: It is basically a member function that can be called even when the object of the class is not initialized. These functions are associated with any object and are used to maintain a single copy of the class member function across different objects of the class. This function is denoted by using the static keyword.
+
+Friend Function: It is basically a function that is especially required for accessing non-public members of the class. It has the right to access all private and protected members of the class. It usually provides some additional functionality that is not normally used by class and allows sharing class information by non-member function.
+
+1)It is a member function of a class that is called even when the object of the class is not initialized.	
+A friend function is a non-member function or ordinary function of a class, which is declared as a friend using the keyword “friend” inside the class. 
+2)In this, it cannot access any variable of its class except for static variables.
+In this, it can access private and public members of the class.
+3)It is denoted by placing a static keyword before the function name.
+It is denoted by placing a friend keyword before the function name.
+4)It can have access to members of one class.  
+It can have access to members of several classes.  
+5)It cannot be used when one needs to overload operators.  
+It can be used when one needs to overload operations because overloading operators can only be done through friends or non-static members.  
+======================================================================================
+
+
+#include<iostream>
+using namespace std;
+class complex
+{
+	int real,img;
+public:
+	complex();
+	complex(int,int);
+	void display();
+	complex operator+(int);
+	friend complex operator+(int,complex&);
+};
+complex::complex()
+{}
+complex::complex(int real,int img)
+{
+	this->real=real;
+	this->img=img;
+}
+void complex::display()
+{
+	if(img>0)
+	cout<<"complex number is "<<real<<"+"<<img<<"i"<<endl;
+	else
+	cout<<"complex number is "<<real<<img<<"i"<<endl;
+}
+complex complex::operator+(int num)
+{
+	complex temp;
+	temp.real=real + num;
+	temp.img=this->img + num;
+	return temp;
+}
+complex operator+(int num,complex& c)
+{
+	complex temp;
+	temp.real=c.real + num;
+	temp.img=c.img + num;
+	return temp;
+}
+int main()
+{
+/*	complex c1(1,2);
+	complex c2=c1 + 5;//c2=c1.operator+(int)
+	c2.display();//6+7i*/
+	
+	complex c1(1,2);
+	complex c2=5+c1;// c2=5.operator+(c1) =====> c2=operator+(5,c1)            
+	c2.display();
+}
+=========================================================================
+//overloading of == operator
+// C++ Program to overload == operator 
+#include<iostream> 
+#include<string> 
+using namespace std; 
+  
+class Car{ 
+  private: 
+    string name; 
+    int cost; 
+ 
+   public: 
+        Car(string n, int c){ 
+            name=n; 
+            cost=c; 
+        } 
+        bool operator == (const Car &c){ 
+            if (name == c.name && cost == c.cost) 
+                return true; 
+            return false; 
+        } 
+}; 
+int main(){ 
+    Car car1 ("Santro",500000); 
+    Car car2 ("Safari",1000000); 
+    if (car1 == car2) //car1.operator==(car2)
+        cout<<"Equivalent"<<endl; 
+    else
+        cout<<"Not Equivalent"<<endl; 
+}
+====================================================================
+//overloading of insertion and extraction operator
+In C++, stream insertion operator “<<” is used for output and extraction operator “>>” is used for input. 
+
+1) cout is an object of ostream class and cin is an object of istream class 
+2) These operators must be overloaded as a global function. And if we want to allow them to access private data members of the class, we must make them friend. 
+Why these operators must be overloaded as global? 
+In operator overloading, if an operator is overloaded as a member, then it must be a member of the object on the left side of the operator. For example, consider the statement “ob1 + ob2” (let ob1 and ob2 be objects of two different classes). To make this statement compile, we must overload ‘+’ in a class of ‘ob1’ or make ‘+’ a global function. 
+The operators ‘<<‘ and ‘>>’ are called like ‘cout << ob1’ and ‘cin >> ob1’. So if we want to make them a member method, then they must be made members of ostream and istream classes, which is not a good option most of the time. Therefore, these operators are overloaded as global functions with two parameters, cout and object of user-defined class.
+Following is a complete C++ program to demonstrate overloading of <> operators.
+ 
+
+#include <iostream>
+using namespace std;
+ 
+class Complex
+{
+private:
+    int real, imag;
+public:
+    Complex(int r = 0, int i =0)
+    {  real = r;   imag = i; }
+    friend void operator << (ostream &out, const Complex &c);
+    friend void operator >> (istream &in,  Complex &c);
+};
+ 
+void operator << (ostream &out, const Complex &c)
+{
+    out << c.real;
+    out  <<"+"<< c.imag <<"i"<< endl;
+   
+}
+ 
+void operator >> (istream &in,  Complex &c)
+{
+    cout << "Enter Real Part ";
+    in >> c.real;
+    
+    cout << "Enter Imaginary Part ";
+    in >> c.imag;
+    
+}
+ 
+int main()
+{
+   Complex c1;
+   cin >> c1;
+   cout << "The complex object is ";
+   cout << c1;
+   return 0;
+}
+==============================================================================
+#include<iostream>
+using namespace std;
+class Date1
+{
+      int day;
+      int month;
+      int year;
+      public:
+             Date1(int d,int m,int y)
+             {
+                   day=d;
+                   month=m;
+                   year=y;
+             }
+             
+              void operator-(int);
+              void operator+(int);
+             void display()
+             {
+                  cout<<"Date:"<<day<<"-"<<month<<"-"<<year<<endl;
+             }
+};
+void Date1:: operator-( int y)
+{
+     day= day-y;
+    month=month-3;
+year=year-6;
+ cout<<"Date:"<<day<<"/"<<month<<"/"<<year<<endl;
+}
+void Date1:: operator+(int y)
+{
+     day= day+y;
+    month=month+3;
+year=year+6;
+ cout<<"Date:"<<day<<"/"<<month<<"/"<<year<<endl;
+}
+int main()
+{
+    int dd,mm,yy;
+    cout<<"Enter Day:";
+    cin>>dd;
+    cout<<"Enter Month:";
+    cin>>mm;
+    cout<<"Enter Year:";
+    cin>>yy;
+    
+    Date1 d1(dd,mm,yy);
+    d1-1;//d1=d1.operator-(int)
+   	d1+2;
+   
+    return 0;
+}
+======================================================
+#include<iostream>
+using namespace std;
+class time
+{
+      int hr;
+      int min;
+      int sec;
+      public:
+             time(int h,int m,int s)
+             {
+                   hr=h;
+                   min=m;
+                   sec=s;
+             }
+             
+              time& operator-(int);
+              time& operator+(int);
+             void display()
+             {
+                  cout<<"time:"<<hr<<":"<<min<<":"<<sec<<endl;
+             }
+};
+time& time::operator-(int y)
+{
+     hr= hr-y;
+     min= min-y;
+     sec= sec-y;
+     return (*this);
+}
+time& time::operator+(int y)
+{
+     hr= hr+y;
+     min= min+y;
+     sec= sec+y;
+     return (*this);
+}
+int main()
+{
+    int hr,min,sec;
+    cout<<"Enter hr:";
+    cin>>hr;
+    cout<<"Enter Min:";
+    cin>>min;
+    cout<<"Enter sec:";
+    cin>>sec;
+    
+    time t(hr,min,sec);
+    t=t-1;
+    t.display();
+    
+    return 0;
+}
+=============================================================
+nline Function
+
+==>we can use several methods to optimize the code and enhance a program’s performance. For example, in the C language, the Macro function is used to reduce the program’s execution time. Since C++ is an extension of C, it also provides a function called the inline function, which can speed up a program by reducing the execution time. 
+==>C++ provides inline functions to reduce the function call overhead. An inline function is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of the inline function call. This substitution is performed by the C++ compiler at compile time. An inline function may increase efficiency if it is small.
+
+==>Syntax:
+
+inline return-type function-name(parameters)
+{
+    // function code
+}  
+
+==>Remember, inlining is only a request to the compiler, not a command. The compiler can ignore the request for inlining. 
+
+==>The compiler may not perform inlining in such circumstances as: 
+If a function contains a loop. (for, while and do-while) 
+If a function is recursive. 
+If a function contains a switch or goto statement. 
+
+Why Inline Functions are Used?
+1)When the program executes the function call instruction the CPU stores the memory address of the instruction following the function call, copies the arguments of the function on the stack, and finally transfers control to the specified function. The CPU then executes the function code, stores the function return value in a predefined memory location/register, and returns control to the calling function. This can become overhead if the execution time of the function is less than the switching time from the caller function to called function (callee). 
+
+For functions that are large and/or perform complex tasks, the overhead of the function call is usually insignificant compared to the amount of time the function takes to run. However, for small, commonly-used functions, the time needed to make the function call is often a lot more than the time needed to actually execute the function’s code. This overhead occurs for small functions because the execution time of a small function is less than the switching time.
+
+==>When a function is invoked, it expands in line and is known as an inline function. When an inline function is invoked, its entire body of code is added or replaced at the inline function call location. At compile time, the C++ compiler makes this substitution.
+
+2)The main use of the inline function in C++ is to save memory space. Whenever the function is called, then it takes a lot of time to execute the tasks, such as moving to the calling function. If the length of the function is small, then the substantial amount of execution time is spent in such overheads, and sometimes time taken required for moving to the calling function will be greater than the time taken required to execute that function.
+
+The solution to this problem is to use macro definitions known as macros. The preprocessor macros are widely used in C, but the major drawback with the macros is that these are not normal functions which means the error checking process will not be done during the compilation.
+
+C++ has provided one solution to this problem. In the case of function calling, the time for calling such small functions is huge, so to overcome such a problem, a new concept was introduced known as an inline function. When the function is encountered inside the main() method, it is expanded with its definition thus saving time.
+
+Inline functions Advantages: 
+Function call overhead doesn’t occur. 
+It also saves the overhead of push/pop variables on the stack when a function is called. 
+It also saves the overhead of a return call from a function. 
+enhance the execution time and speed of your program.
+The compilation speed of the program gets increased since the inline functions prevent function call overhead. 
+
+
+Inline function Disadvantages: 
+1)If you use too many inline functions then the size of the binary executable file will be large, because of the duplication of the same code. 
+2)The inline function may increase compile time overhead if someone changes the code inside the inline function then all the calling location has to be recompiled because the compiler would be required to replace all the code once again to reflect the changes, otherwise it will continue with old functionality. 
+
+#include <iostream>
+using namespace std;
+inline int cube(int s) { return s * s * s; }
+int main()
+{
+    cout << "The cube of 3 is: " << cube(3) << "\n";
+    return 0;
+}
+
+Output
+The cube of 3 is: 27
+
+========================================
+==>If you need to explicitly declare an inline function in the class then just declare the function inside the class and define it outside the class using the inline keyword. 
+
+
+For Example: 
+
+class S
+{
+public:
+    int square(int s); // declare the function
+};
+
+inline int S::square(int s) // use inline prefix
+{
+}
+
+=================================================================
+// C++ Program to demonstrate inline functions and classes
+#include <iostream>
+ 
+using namespace std;
+ 
+class operation {
+    int a, b, add, sub, mul;
+    float div;
+ 
+public:
+    void get();
+    void sum();
+    void difference();
+    void product();
+    void division();
+};
+inline void operation ::get()
+{
+    cout << "Enter first value:";
+    cin >> a;
+    cout << "Enter second value:";
+    cin >> b;
+}
+ 
+inline void operation ::sum()
+{
+    add = a + b;
+    cout << "Addition of two numbers: " << a + b << "\n";
+}
+ 
+inline void operation ::difference()
+{
+    sub = a - b;
+    cout << "Difference of two numbers: " << a - b << "\n";
+}
+ 
+inline void operation ::product()
+{
+    mul = a * b;
+    cout << "Product of two numbers: " << a * b << "\n";
+}
+ 
+inline void operation ::division()
+{
+    div = a / b;
+    cout << "Division of two numbers: " << a / b << "\n";
+}
+ 
+int main()
+{
+    cout << "Program using inline function\n";
+    operation s;
+    s.get();
+    s.sum();
+    s.difference();
+    s.product();
+    s.division();
+    return 0;
+}
+Output:
+
+Enter first value: 45
+Enter second value: 15
+Addition of two numbers: 60
+Difference of two numbers: 30
+Product of two numbers: 675
+Division of two numbers: 3 
+=======================================================================
+What is wrong with the macro? 
+There are some problems with the use of macros in C++. 
+Macro cannot access private members of the class.
+the major drawback with the macros is that these are not normal functions which means the error checking process will not be done during the compilation.
+One other thing is that the macros are managed by the preprocessor and inline functions are managed by the C++ compiler. 
+
+===========================================================================
+
+
+
+=============================================================================
+
+
+FAQ
+
+Difference between Inline and Macro in C++
+
+Macro : It is also called preprocessors directive. The macros are defined by the #define keyword. Before the program compilation, the preprocessor examines the program whenever the preprocessor detects the macros then preprocessor replaces the macro by the macro definition. Syntax of Macro:
+#define MACRO_NAME Macro_definition 
+Example of Macro:
+ 
+#include <iostream> 
+using namespace std; 
+  
+// macro with parameter 
+#define MAXIMUM(a, b) (a > b) ? a : b 
+  
+// Main function for the program 
+int main() 
+{ 
+    cout << "Max (100, 1000):"; 
+    int k = MAXIMUM(100, 1000); 
+    cout << k << endl; 
+  
+    cout << "Max (20, 0):"; 
+    int k1 = MAXIMUM(20, 0); 
+    cout << k1; 
+  
+    return 0; 
+} 
+Output:
+Max (100, 1000):1000
+Max (20, 0):20 
+
+	Inline	Macro
+1.	An inline function is defined by the inline keyword.	Whereas the macros are defined by the #define keyword.
+2.	Through inline function, the class data members can be accessed.	Whereas macro can’t access the class data members.
+3.	In the case of inline function, the program can be easily debugged.	Whereas in the case of macros, the program can’t be easily debugged.
+4.	In C++, inline may be defined either inside the class or outside the class.	Whereas the macro is all the time defined at the beginning of the program.
+5Inline functions are expanded by the compiler.Macros are expanded by the preprocessor.
+
+==========================================================================================
+Inline Function vrs Normal Function  
+
+1	It is expanded inline when it is invoked. 	It is a function that provides modularity to the program.  
+2.	It is basically a function that is used when functions are small and called very often.  	It is basically a group of statements that performs a particular task.  It is used when functions are big.
+3.	It requires ‘inline‘ keyword in its declaration.  	It does not require any keyword in its declaration.  
+4.	It generally executes much faster as compared to normal functions.  	It generally executes slower than inline function for small size function.  
+5.	The compiler always places a copy of the code of that function at each point where the function is called at compile time. 	It does not provide such a type of functionality.  
+6.	Too many inline functions affect file size after compilation as it duplicates the same code.  	Too many normal functions do not affect file size after compilation. 
+================================================================
+Exception Handling
+
+==>An exception is an unexpected problem that arises during the execution of a program our program terminates suddenly with some errors/issues. Exception occurs during the running of the program (runtime).
+==>In C++, exceptions are runtime anomalies or abnormal conditions that a program encounters during its execution. The process of handling these exceptions is called exception handling.
+Exception handling is a manner to handle the runtime error, we carry out exception handling, so, the normal flow of the program may be maintained even after runtime errors. 
+
+
+====================================================================================
+Why do we need Exception Handling in C++?
+The following are the main advantages of exception handling over traditional error handling:
+
+1)Separation of Error Handling Code from Normal Code: There are always if-else conditions to handle errors in traditional error handling codes. These conditions and the code to handle errors get mixed up with the normal flow. This makes the code less readable and maintainable. With try/catch blocks, the code for error handling becomes separate from the normal flow.
+
+2)Grouping of Error Types: In C++, both basic types and objects can be thrown as exceptions. 
+
+
+
+4)The Exception Handling mechanism offers a way to transfer control from one part of a program to another, This makes it clean to separate the mistake handling code from the code written to address the real functionality of the program.thats why detecting of errors becomes very easy
+
+5)Exception Handling in C++ is a process to handle runtime errors. We perform exception handling so the normal flow of the application can be maintained even after runtime errors.
+====================================================================================
+==========================================================================
+Syntax of try-catch in C++
+try {         
+     // Code that might throw an exception
+     throw SomeExceptionType("Error message");
+ } 
+catch( ExceptionName e1 )  {   
+     // catch block catches the exception that is thrown from try block
+ } 
+1. try in C++
+The try keyword represents a block of code that may throw an exception placed inside the try block. It’s followed by one or more catch blocks. If an exception occurs, try block throws that exception.
+
+2. catch in C++
+The catch statement represents a block of code that is executed when a particular exception is thrown from the try block. The code to handle the exception is written inside the catch block.
+
+3. throw in C++
+An exception in C++ can be thrown using the throw keyword. When a program encounters a throw statement, then it immediately terminates the current function and starts finding a matching catch block to handle the thrown exception.
+
+Note: Multiple catch statements can be used to catch different type of exceptions thrown by try block.
+==========================================================================================
+// C++ program to show what happens  
+// when division by zero is done  
+// and exceptions are not handled 
+#include <iostream> 
+using namespace std; 
+  
+// Driver code 
+int main()  
+{ 
+  int numerator = 5; 
+  int denominator = 0; 
+    
+  int ans = numerator/denominator; 
+    
+  // The result will not be displayed  
+  cout << ans << endl; 
+    
+  return 0; 
+    
+} 
+The above program will show an abnormal behavior
+===============================================================================
+// C++ program to handle  
+// divide by zero exception 
+#include <iostream> 
+using namespace std; 
+  
+ 
+int main()  
+{ 
+  int numerator = 5; 
+  int denominator = 0; 
+  int result; 
+    
+  try
+  { 
+    if(denominator == 0) 
+    { 
+      throw denominator; 
+    } 
+    result = numerator / denominator; 
+
+  cout << "Division Result is: " << result;
+}
+  catch(int ex) 
+  { 
+    cout << "Exception: Divide by zero not allowed :" <<  
+             ex << endl; 
+  } 
+   
+    
+  return 0; 
+}
+
+Output
+Exception: Divide by zero not allowed :0
+Division Result is: 4197440
+
+Example 2: Below is the C++ program to input an age integer if the age is less than 18 then return NO, but if the age is greater than or equal to 18 then return Yes:
+
+   
+// C++ program to input an age integer  
+// if the age is less than 18 then  
+// return NO, but if the age is greater 
+// than or equal to 18 then return Yes 
+#include <iostream> 
+using namespace std; 
+  
+// Driver code 
+int main()  
+{ 
+  try 
+  { 
+    int age = 10; 
+    if (age >= 18)  
+    { 
+      cout << "YES, you are old enough."; 
+    }  
+    else 
+    { 
+      throw (age); 
+    } 
+  } 
+  catch (int num)  
+  { 
+    cout << "No, You must be at least 18 years old" << 
+             endl; 
+    cout << "Age is: " << num;   
+  } 
+  return 0; 
+}
+
+Output
+No, You must be at least 18 years old
+Age is: 10
+
+C++ Standard Exceptions
+==>C++ defines a set of standard exceptions defined in <exception> which can be used in the programs. These exceptions are arranged in the parent-child class hierarchy. 
+==>==>In C++, exception is an event or object which is thrown at runtime. All exceptions are derived from std::exception class. It is a runtime error which can be handled. If we don't handle the exception, it prints exception message and terminates the program.
+
+
+Below is the table listing the standard exceptions with description:
+Exception	Description
+1.	std::exception	An exception and parent class of all the standard C++ exceptions.
+2.	std::bad_alloc	This exception can be thrown by new.
+3.	std::bad_cast	This exception can be thrown by dynamic_cast.
+4.	std::bad_typeid	This can be thrown by type id.
+5.	std::overflow_error	This is thrown if a mathematical overflow occurs.
+==========================================================================================
+New Exception in C++
+The customized exceptions can be defined by inheriting and overriding exception class functionality.
+
+Syntax:
+
+ use std::exception
+==============================================================
+Rethrowing an Exception:
+
+In C++, try/catch blocks can be nested. Also, an exception can be re-thrown using “throw; “. 
+Explain the concept of Rethrowing exceptions?
+A rethrowing exception is a term used when we throw the exception again from one catch block to another. The exception is thrown towards another outside catch block.
+
+Example:
+
+C++
+   
+#include <iostream> 
+using namespace std; 
+  
+void help() 
+{ 
+    try { 
+        throw 10; 
+    } 
+    catch (...) { 
+        cout << "First throw called\n"; 
+        throw 0; 
+    } 
+} 
+  
+int main() 
+{ 
+  
+    try { 
+        help(); 
+    } 
+    catch (int x) { 
+        cout << "Rethrowing throw called\n"; 
+    } 
+  cout<<"end\n";
+    return 0; 
+}
+
+
+=====================================================
+
+Example
+
+The following program shows try/catch blocks nesting.
+
+CPP
+   
+// C++ program to demonstrate try/catch blocks can be nested
+// in C++
+ 
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+ 
+    // nesting of try/catch
+    try {
+        try {
+            throw 20;
+        }
+        catch (int n) {
+            cout << "Handle Partially ";
+            throw 0: // Re-throwing an exception
+        }
+    }
+    catch (int n) {
+        cout << "Handle remaining ";
+    }
+    return 0;
+}
+
+Output
+Handle Partially Handle remaining 
+A function can also re-throw a function using the same “throw; ” syntax. A function can handle a part and ask the caller to handle the remaining.
+=================================================================
+
+imp
+When an exception is thrown, all objects created inside the enclosing try block are destroyed before the control is transferred to the catch block.
+
+Example
+
+The following program demonstrates the above property.
+
+CPP
+   
+// C++ program to demonstrate
+ 
+#include <iostream>
+using namespace std;
+ 
+// Define a class named Test
+class Test {
+public:
+    // Constructor of Test
+    Test() { cout << "Constructor of Test " << endl; }
+    // Destructor of Test
+    ~Test() { cout << "Destructor of Test " << endl; }
+};
+ 
+int main()
+{
+    try {
+        // Create an object of class Test
+        Test t1;
+ 
+        // Throw an integer exception with value 10
+        throw 10;
+    }
+    catch (int i) {
+        // Catch and handle the integer exception
+        cout << "Caught " << i << endl;
+    }
+}
+
+Output
+Constructor of Test 
+Destructor of Test 
+Caught 10
+======================================================================
+
+
+
+
+
+
+   // C++ program to demonstate the use of try,catch and throw
+// in exception handling.
+ 
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int x = -1;
+ 
+    // Some code
+    cout << "Before try \n";
+ 
+    // try block
+    try {
+        cout << "Inside try \n";
+        if (x < 0) {
+            // throwing an exception
+            throw x;
+            cout << "After throw (Never executed) \n";
+        }
+    }
+ 
+    // catch block
+    catch (int x) {
+        cout << "Exception Caught \n";
+    }
+ 
+    cout << "After catch (Will be executed) \n";
+    return 0;
+}
+======================================================================
+Properties of Exception Handling in C++
+Property 1
+There is a special catch block called the ‘catch-all’ block, written as catch(…), that can be used to catch all types of exceptions.
+
+Example
+
+In the following program, an int is thrown as an exception, but there is no catch block for int, so the catch(…) block will be executed. 
+
+CPP
+   
+// C++ program to demonstate the use of catch all
+// in exception handling.
+ 
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    // try block
+    try {
+ 
+        // throw
+        throw 10;
+    }
+ 
+    // catch block
+    catch (char* excp) {
+        cout << "Caught " << excp;
+    }
+ 
+    // catch all
+    catch (...) {
+        cout << "Default Exception\n";
+    }
+    return 0;
+}
+
+Output
+Default Exception
+
+Property 2
+Implicit type conversion doesn’t happen for primitive types.
+
+Example
+
+In the following program, ‘a’ is not implicitly converted to int. 
+
+CPP
+   
+//// C++ program to demonstate property 2: Implicit type
+/// conversion doesn't happen for primitive types.
+// in exception handling.
+ 
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    try {
+        throw 'a';
+    }
+    catch (int x) {
+        cout << "Caught " << x;
+    }
+    catch (...) {
+        cout << "Default Exception\n";
+    }
+    return 0;
+}
+
+Output
+Default Exception
+
+Output: 
+
+Default Exception
+Property 3
+If an exception is thrown and not caught anywhere, the program terminates abnormally.
+
+Example
+
+In the following program, a char is thrown, but there is no catch block to catch the char. 
+
+CPP
+   
+// C++ program to demonstate property 3: If an exception is
+// thrown and not caught anywhere, the program terminates
+// abnormally in exception handling.
+ 
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    try {
+        throw 'a';
+    }
+    catch (int x) {
+        cout << "Caught ";
+    }
+    return 0;
+}
+
+==============================
+
+
+ 
+====================================================================================
+   
+#include <iostream> 
+using namespace std; 
+  
+int main() 
+{ 
+    try { 
+        throw 10; 
+    } 
+    catch (...) { 
+        cout << "default exception \n"; 
+    } 
+    catch (int param) { 
+        cout << "integer exception \n"; 
+    } 
+  
+    return 0; 
+}
+Output:
+
+An error will be raised
+Explanation: The default catch block should be the last catch block or else other catch blocks will never be reached.
+==========================================================
+
+The new exception can be defined by overriding and inheriting exception class functionality.
+
+C++ user-defined exception example
+Let's see the simple example of user-defined exception in which std::exception class is used to define the exception.
+#include <iostream>  
+#include <exception>  
+using namespace std;  
+class MyException : public exception{  
+    public:  
+        const char * what() const throw()  
+        {  
+            return "Attempted to divide by zero!\n";  
+        }  
+};  
+int main()  
+{  
+    try  
+    {  
+        int x, y;  
+        cout << "Enter the two numbers : \n";  
+        cin >> x >> y;  
+        if (y == 0)  
+        {  
+            MyException z;  
+            throw z;  
+        }  
+        else  
+        {  
+            cout << "x / y = " << x/y << endl;  
+        }  
+    }  
+    catch(exception& e)  
+    {  
+        cout << e.what();  
+    }  
+}  
+Output:
+
+Enter the two numbers :
+10
+2
+x / y = 5  
+Output:
+
+Enter the two numbers :
+10
+0
+Attempted to divide by zero!
+-->
+Note: In above example what() is a public method provided by the exception class. It is used to return the cause of an exception.

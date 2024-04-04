@@ -1,0 +1,540 @@
+//OVERLOADING OF = OPERATOR
+
+==>one object can be assigned to another object provided the type of both the objects is same.
+when object assignment is done,assignment operator function is called.
+
+==>ex:
+cstring s1("info");
+cstring s2("tech");
+s1=s2;//s1.operator=(s2) //memberwise copy
+
+==>compiler provides a default implementation of the assignment operator for any class which 
+performs memberwise copy of the data members. this mechanism of performing memberwise copy of the 
+contents of the objects is called as shallow copying.
+==>while performing memberwise copy,the address in the pointer data member of one object is copied 
+into the pointer data member of another object.This means both the objects point to same memory 
+location.it could lead to following problems:
+1)Memory leakage:
+2)Dangling pointer:
+
+Therefore for classes with a pointer data member ex: class cstring,shallow copying technique 
+cannot be used.
+==>inorder to handle such memory related problems,the assignment operator needs to be overloaded.
+this enables deep copying
+=========================================================================
+==>user defined overloaded assignment operator function for the class cstring should take care of 
+memory leakage and dangling pointer problems.steps involved in overloading the assignment operator 
+are as follows:
+1)The old buffer is deleted. ex:if object s2 is assigned to s1, first the buffer pointed by s1 is 
+deleted.This prevents memory leakage problem.
+2)Enough new memory is allocated on heap for s1.The new memory is equal to the size of buffer
+ pointed by s2.
+3)The string is copied to the newly alloacted memory .The string of s2 is copied to the newly 
+allocated memory.
+step2 and step 3 prevent the problem of dangling pointer.
+
+==>call s1=s2 is resolved as s1.operator=(s2).
+s1 is an implicit parameter which is the string to be modified. s2 is passed by reference to 
+avoid copy constructor call.
+
+==>
+ex:
+cstring s1("info");
+cstring s2("tech");
+s1=s2;//calls assignment operator
+cstring s3=s1;//calls copy constructor
+
+==>If a class contains atleast one data member as a pointer then to avoid memory related problems
+ in the applications it is necessary for the programmer to implement the following:
+1)userdefined copy constructor
+2)userdefined destructor
+3)userdefined assignment operator
+
+
+#include<iostream>
+using namespace std;
+#include<string.h>
+class string1
+{
+	int len;
+	char* ptr; 
+	public:
+		void display();
+		string1(char*);
+		void operator=(string1&);
+		string1(string1&)
+		{
+			cout<<"copy constructor is called";
+		}
+		~string1()
+		{
+			
+			cout<<"destrutor is called"<<this<<endl;
+			if(ptr)
+			delete[] ptr;
+		}
+		
+
+};
+void string1::operator=(string1& s)
+{
+	cout<<"assignment is called\n";
+	delete[] ptr;
+	len=s.len;
+	ptr=new char[len+1];
+	strcpy(ptr,s.ptr);
+}
+void string1::display()
+{
+	cout<<"length is "<<len<<endl;
+ 	cout<<"string is "<<ptr<<endl;
+ 	
+}
+string1::string1(char * sptr)
+{
+cout<<this<<endl;
+	len=strlen(sptr);
+	ptr=new char[len+1];
+	strcpy(ptr,sptr);
+}
+	
+
+int main()
+{
+
+
+	string1 s1("abc");
+	string1 s2("xyz");
+//	s2=s1;//s2.operator=(s1)
+//	s2.display();
+	
+//	string1 s4(s1);//give call to copy constructor
+//	s4.display();
+	
+	s2=s1;//s2.operator=(s1)
+	s2.display();
+	s1.display();
+	
+}
+============================================================================
+When is the copy constructor called? 
+In C++, a Copy Constructor may be called in the following cases: 
+
+1)When an object of the class is returned by value.
+ ==>If a function is returning an object by value,
+a)A temporary object is automatically created by invoking the copy constructor,This temporary
+ object holds the state of the returned object.
+b)Destrutor is invoked for destroying the local object
+c)temporary object is returned to the caller function and is assigned memberwise(shallow copy)
+ to the object in the caller.
+d)after assignment,this temporary object is destroyed.
+
+#include<iostream>
+using namespace std;
+#include<string.h>
+class string1
+{
+	int len;
+	char* ptr;
+	public:
+		void display();
+		string1(char*);
+		string1 operator=(string1&);
+		string1(string1&)
+		{
+			cout<<"copy constructor is called";
+		}
+		~string1()
+		{
+			
+			cout<<"destrutor is called"<<this<<endl;
+		}
+		
+};
+string1 string1::operator=(string1& s)
+{
+	cout<<"assignment is called\n";
+	len=s.len;
+	delete[] ptr;
+	ptr=new char[len+1];
+	strcpy(ptr,s.ptr);
+	return (*this);
+}
+void string1::display()
+{
+	cout<<"length is "<<len<<endl;
+	cout<<"string is "<<ptr<<endl;
+}
+string1::string1(char * sptr)
+{
+	cout<<this<<endl;
+	len=strlen(sptr);
+	ptr=new char[len+1];
+	strcpy(ptr,sptr);
+}	
+
+int main()
+{
+
+
+	string1 s1("abc");
+	string1 s2("xyz");
+	//string1 s3=s1;//s2.operator=(s1)
+	s1=s2;
+	
+
+}==================================================================================
+
+
+
+Object oriented concepts:
+
+Data hiding:
+
+==>hiding  of the data
+==>our internal data should not go outside directly i..e outside person should not access 
+our internal data directly.i.e we should hide our data..
+==> to check ur mail. by typing www.gmail.com,ur inbox mailbox wont get open.compulsory 
+u have to provide username and password,ur gmail data is not coming outside directly,we have 
+to do some sort of validation. after validation that data is going to come.
+==>ex:ICICI bank account
+our main data should not  go directly. some sort of authentication is required then only  
+the data should go is called data hiding.
+
+class Account
+{
+	private :
+	double bal; //by implementing this bal variable as a private , we can implement
+			 data hiding
+	//I want check account balance then how I will check, 
+	If u want to balance information then I will call getBal().
+public:
+double getBalance()
+{
+	//validation;
+	if(valid)
+	return balance;
+
+}
+//user has to call public method, within the method ,we have to perform validation,
+if validation succed,then only 	we can be able to provide our data.
+
+Advantage:
+whereever hiding is there, the biggest advantage is security
+======================================================================
+Abstraction:
+
+
+Abstraction means not complete,partially implemented, not completely provided class.
+hiding internal implementation,just highlight the set of services what we are offering.
+these are the set of services what I m going to offer,but how we internally implemented, 
+plz dont ask due to security reason.
+If I am exposing my internal code to any person then where is security to my code.
+thats why hide the internal code.
+
+ex:If we go to At,swipe the card,enter pinnumber,which operation u want to do(withdraw,),
+in this process we dont know which code is executing.
+If u click withdraw button,internally how this functionality is implemented,which 
+sql query is executing,where the database server is locating ,all this information 
+bank people will never highlited.
+bank people thru ATM gui screen,they are going to highlight the set of services 
+what they are offering.
+
+Ex: I want to develop java application,several services are available(withdraw,deposit),
+A gui base .net application want to communicate with our java application. from.net application 
+we have to call withdraw(), in the middle i will expose all my set of services, called as interface.
+.net person has to call withdraw(),internally how this functionality is implemented we will never
+ going to expose. because of this abstraction/interface concept two different application 
+can communicate with each other without hightlighting our internal application. 
+
+ADVANTAGE:
+1)security because outsider dont have idea ,internally how it is implemented
+
+2)Enhancement:suppose withdraw() is implemented using java, I want to replace with .net functionality,internally I made changes,but gui screen is same.
+without affecting enduser ,we can perform any changes in our internal code.
+
+3)Maintainablity and modularity of the application improves because we are  hiding our internal implementation.
+
+
+
+===============================================================
+Encapsulation:
+
+capsule: whatever the medicine require to cure cold,that medicine is going to be encapsulated.
+ its going to be grouped into this capsule. capsule is nothing but unit, all the required things
+are grouped into 1 capsule. in the same way.
+
+ex:for every student some data members and functions are der,
+the process of encapsulating or grouping of data members and corresponding 
+behaviour into a single unit. that unit itself is called as class.
+
+
+int age;
+int rollno;
+int marks;
+	+
+
+read()
+write()
+
+student related data + behaviour
+
+Every c++ class is an example of encapsulation.
+
+
+==>if any component follows data hiding and abstraction, that component is said to be 
+encapsulated component.
+Encapsulation=data hiding + Abstraction
+
+class Account
+{
+	private:
+	double balance;
+	public:
+	public double getBal()	
+	{
+		//validate
+		return balance;
+		public void setBalance(double amt)
+		{
+			balance=balance + amt;
+		}
+	}
+
+i will never highlight this functionalities  to outside person directly, 
+I will provide GUI screen to the user. in that balance enq. whenever user 
+click bal enquiry ,functionality will get executed.but enduser dont know,
+internally which code is executed.
+==================================
+======================================================================
+
+Friend Class and Function in C++
+
+==>
+Data hiding is a fundamental concept of object-oriented programming. It restricts the
+access of private members from outside of the class.
+Similarly, protected members can only be accessed by derived classes and are 
+inaccessible from outside. For example,However, there is a feature in C++ 
+called friend functions that break this rule and allow us to access member 
+functions from outside the class.
+
+A friend class can access private and protected members of other classes 
+in which it is declared as a friend. 
+It is sometimes useful to allow a particular class to access private 
+and protected members of other classes. 
+
+We can declare a friend class in C++ by using the friend keyword.
+
+class Demo //Base class
+{
+	//Demo1 is a friend class of Demo
+	friend class Demo1;
+}
+class Demo1 // friend class
+{
+//statements;
+}
+
+Syntax:
+friend class class_name;    // declared in the base class
+
+========================================================
+
+
+// C++ Program to demonstrate the functioning of a friend class
+#include <iostream>
+using namespace std;
+ class Demo {
+private:
+    int private_variable;
+ protected:
+    int protected_variable;
+ 
+public:
+    Demo()
+    {
+        private_variable = 10;
+        protected_variable = 99;
+    }
+     // friend class declaration
+    friend class F;
+};
+ // Here, class F is declared as a friend inside class Demo. Therefore,
+// F is a friend of class Demo. Class F can access the private members of class Demo.
+class F {
+public:
+    void display(Demo& t)
+    {
+        cout << "The value of Private Variable = "<< t.private_variable << endl;
+        cout << "The value of Protected Variable = "<< t.protected_variable;
+    }
+};
+int main()
+{
+    Demo g;
+    F fri;
+    fri.display(g);
+    return 0;
+}
+
+Output
+The value of Private Variable = 10
+The value of Protected Variable = 99
+
+Note: We can declare friend class or function anywhere in the base class body whether its private, protected or public block. It works all the same.
+=====================================================================================
+Friend Function
+
+
+
+
+==>Like a friend class, a friend function can be granted special access to private and protected members of a class in C++. They are the non-member functions that can access and manipulate the private and protected members of the class for they are declared as friends.
+If a function is defined as a friend function in C++, then the protected and private data of a class can be accessed using the function.
+
+Friend function has the priviliges to access all private and protedcted members of the class.
+
+
+A friend function can be:
+A global function:
+friend return_type function_name (arguments);    // for a global function
+A member function of another class
+friend return_type class_name::function_name (arguments);    // for a member function of another class
+===================================================================
+1. Global Function as Friend Function
+We can declare any global function as a friend function. The following example demonstrates how to declare a global function as a friend function in C++:
+
+Example:
+
+   
+// C++ program to create a global function as a friend
+// function of some class
+#include <iostream>
+using namespace std;
+ 
+class base {
+private:
+    int private_variable;
+ 
+protected:
+    int protected_variable;
+ 
+public:
+    base()
+    {
+        private_variable = 10;
+        protected_variable = 99;
+    }
+     
+      // friend function declaration
+    friend void friendFunction(base& obj);
+};
+ 
+ 
+// friend function definition
+void friendFunction(base& obj)
+{
+    cout << "Private Variable: " << obj.private_variable
+         << endl;
+    cout << "Protected Variable: " << obj.protected_variable;
+}
+ 
+// driver code
+int main()
+{
+    base object1;
+    friendFunction(object1);
+ 
+    return 0;
+}
+
+Output
+Private Variable: 10
+Protected Variable: 99
+In the above example, we have used a global function as a friend function. In the next example, we will use a member function of another class as a friend function.
+
+==============================================================================================
+2	Member Function of Another Class as Friend Function
+We can also declare a member function of another class as a friend function in C++. The following example demonstrates how to use a member function of another class as a friend function in C++:
+
+Example:
+
+C++
+   
+// C++ program to create a member function of another class
+// as a friend function
+#include <iostream>
+using namespace std;
+ 
+class base; // forward definition needed
+// another class in which function is declared
+class anotherClass {
+public:
+    void memberFunction(base& obj);
+};
+ 
+// base class for which friend is declared
+class base {
+private:
+    int private_variable;
+ 
+protected:
+    int protected_variable;
+ 
+public:
+    base()
+    {
+        private_variable = 10;
+        protected_variable = 99;
+    }
+ 
+    // friend function declaration
+    friend void anotherClass::memberFunction(base&);
+};
+ 
+// friend function definition
+void anotherClass::memberFunction(base& obj)
+{
+    cout << "Private Variable: " << obj.private_variable
+         << endl;
+    cout << "Protected Variable: " << obj.protected_variable;
+}
+ 
+// driver code
+int main()
+{
+    base object1;
+    anotherClass object2;
+    object2.memberFunction(object1);
+ 
+    return 0;
+}
+
+Output
+Private Variable: 10
+Protected Variable: 99
+Note: The order in which we define the friend function of another class is important and should be taken care of. We always have to define both the classes before the function definition. Thats why we have used out of class member function definition.
+======================================================================
+
+Features of Friend Functions
+ A friend function is a special function in C++ that in spite of not being a member function of a class has the privilege to access the private and protected data of a class.
+
+A friend function is a non-member function or ordinary function of a class, which is declared as a friend using the keyword “friend” inside the class. By declaring a function as a friend, all the access permissions are given to the function.
+
+The keyword “friend” is placed only in the function declaration of the friend function and not in the function definition or call.
+
+A friend function who is global fun cannot be called using the object name and dot operator. However, it may accept the object as an argument whose value it wants to access.
+A friend function can be declared in any section of the class i.e. public or private or protected.
+=======================================================
+Advantages of Friend Functions
+A friend function is able to access members without the need of inheriting the class.
+The friend function acts as a bridge between two classes by accessing their private data.
+It can be declared either in the public or private or protected part of the class.
+
+Disadvantages of Friend Functions
+                                    Friend functions have access to private members of a class from outside the class which violates the law of data hiding.
+Friend functions cannot do any run-time polymorphism 
+
+Important Points About Friend Functions and Classes
+Friends should be used only for limited purposes. Too many functions or external classes are declared as friends of a class with protected or private data access lessens the value of encapsulation of separate classes in object-oriented programming.
+Friendship is not mutual. If class A is a friend of B, then B doesn’t become a friend of A automatically.
+Friendship is not inherited. 
