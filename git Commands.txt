@@ -5,3 +5,4 @@ eval $(ssh-agent -s)
 cat  ~/.ssh/id_ed25519.pub
 git push -u origin master
 
+	Amount= pi*((pow((1 + rate / 100), time)));;
