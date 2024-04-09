@@ -40,3 +40,116 @@ min_max() {
 int main() {
 	min_max();
 }
+
+
+
+//#include <iostream>
+#include<bits/stdc++.h>
+#include<string>
+using namespace std;
+
+//struct Player {
+//	int numPlayers ;
+//	int  id;
+//	string name  ;
+//	string role  ;                But I just use only the class to handle this problem.
+//	int	match_played ;
+//	int	wikets ;
+//	int	runs ;
+//	int	play_innings ;
+//};
+
+class Cricket {
+
+		static const int NUM_FIELDS = 100;
+		int  id[NUM_FIELDS];
+		string name[NUM_FIELDS] ;
+		string role[NUM_FIELDS] ;
+		int match_played[NUM_FIELDS];
+		int runs[NUM_FIELDS];
+		int wickets[NUM_FIELDS];
+		int numPlayers,highScore,highWkts;
+		string Batting="Batting",Bowling="Bowling",Allrounder="Allrounder";
+		double Avg_runs,Bowl_Economy
+
+	public:
+
+		void get_Player_data() {
+			cout<<"Enter the Player you want to store in Data::";
+			cin>>numPlayers;
+			for (int i = 0; i < numPlayers; ++i) {
+				cout << "Enter the player's ID " << i + 1 << ": ";
+				cin >> id[i];
+				cout << "Enter the player's Name " << i + 1 << ": ";
+				cin >> name[i];
+				cout << "Enter the player's Role " << i + 1 << ": ";
+				cin >> role[i];
+				cout << "Enter the player's Match Played " << i + 1 << ": ";
+				cin >> match_played[i] ;
+
+				if(role[i]==Batting) {
+					cout << "Enter the player's Runs " << i + 1 << ": ";
+					for (int i = 0; i < match_played; ++i) {
+						cout <<"Match NO " << i + 1 << ": ";
+						cin>>runs[i];
+					}
+
+
+				}
+				if(role[i]==Bowling) {
+					cout << "Enter the player's Wickets " << i + 1 << ": ";
+					for (int i = 0; i < match_played; ++i) {
+						cout <<"Match No Wickets" << i + 1 << ": ";
+					}
+				}
+				if(role[i]==Allrounder) {
+					cout << "Enter the player's Runs " << i + 1 << ": ";
+					for (int i = 0; i < match_played; ++i) {
+						cout <<"Match NO " << i + 1 << ": ";
+						cin>>runs[i];
+					}
+
+					cout << "Enter the player's Wickets " << i + 1 << ": ";
+					for (int i = 0; i < match_played; ++i) {
+						cout <<"Match No Wickets" << i + 1 << ": ";
+					}
+
+				}
+
+
+			}
+		}
+
+		void wkt_Player_data() {
+
+		}
+
+		void runs_Player_data() {
+
+		}
+
+
+		void innings_Player_data() {
+
+		}
+//	    void display_Player_data()
+//	    {
+//         cout << "\nPlayer Data:\n";
+//	    for (int i = 0; i < numPlayers; ++i) {
+//	        std::cout << "Player " << i + 1 << ": " << players[i].name << ", Score: " << players[i].score << std::endl;
+//	    }
+//
+//	    }
+
+
+
+};
+
+int main() {
+	Cricket c1;
+	c1.get_Player_data();
+
+
+
+}
+
