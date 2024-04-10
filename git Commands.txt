@@ -58,7 +58,7 @@ using namespace std;
 //	int	runs ;
 //	int	play_innings ;
 //};
-
+	static int inngs=0;
 class Cricket {
 
 		static const int NUM_FIELDS = 100;
@@ -70,14 +70,17 @@ class Cricket {
 		int wickets[NUM_FIELDS];
 		int numPlayers,highScore,highWkts;
 		string Batting="Batting",Bowling="Bowling",Allrounder="Allrounder";
-		double Avg_runs,Bowl_Economy
+		double Avg_runs,Bowl_Economy;
+	   string input13, yes="yes",no="no";
+	  
 
 	public:
 
 		void get_Player_data() {
 			cout<<"Enter the Player you want to store in Data::";
 			cin>>numPlayers;
-			for (int i = 0; i < numPlayers; ++i) {
+			for (int i = 0; i < numPlayers; ++i) 
+			{
 				cout << "Enter the player's ID " << i + 1 << ": ";
 				cin >> id[i];
 				cout << "Enter the player's Name " << i + 1 << ": ";
@@ -86,48 +89,111 @@ class Cricket {
 				cin >> role[i];
 				cout << "Enter the player's Match Played " << i + 1 << ": ";
 				cin >> match_played[i] ;
-
-				if(role[i]==Batting) {
-					cout << "Enter the player's Runs " << i + 1 << ": ";
-					for (int i = 0; i < match_played; ++i) {
-						cout <<"Match NO " << i + 1 << ": ";
-						cin>>runs[i];
+				
+            	int matchplayed=match_played[i];
+			    if(role[i]==Batting)
+			 	{
+			 	  for(int i=0;i<matchplayed;i++)
+			 		{ 
+					  
+				    do{
+		 		     cout<<"Enter the player's Runs "<<i+1<<":";
+		 		     cout <<"Match NO " << i + 1 << ": ";
+				 	 cin>>runs[i];
+		             inngs++;
+		             i++;
+		             } while(i!=matchplayed);
+			 	     
+		 	     	cout<<"player want to bowling in this match yes or no type:"<<i+1<<":";
+		 	     	cin>>input13;
+		 	     	if(input13==yes)
+		 	     	{    
+		 	     	    int input1;
+		 	     	    cout<<" how much innges batsmen play :";
+		 	     	    cin>>input1;
+		 	     	    for(int i=0;i<input1;i++)
+		 	         	{
+		 	     			cout<<"Enter the wikets"<<i+1<<":";
+		 	                 cin>>wickets[i];
+		 	                 inngs++;
+				    	}
 					}
-
+					
+					sort();
 
 				}
-				if(role[i]==Bowling) {
-					cout << "Enter the player's Wickets " << i + 1 << ": ";
-					for (int i = 0; i < match_played; ++i) {
-						cout <<"Match No Wickets" << i + 1 << ": ";
+		
+	         }
+
+				
+				if(role[i]==Bowling) 
+				{
+				
+					  for(int i=0;i<matchplayed;i++)
+			 		{ 
+					  
+				    do{
+		 		     cout<<"Enter the player's Wickets "<<i+1<<":";
+		 		   	cout <<"Match No Wickets" << i + 1 << ": ";
+				 	 cin>>wickets[i];
+		             inngs++;
+		             i++;
+		             } while(i!=matchplayed);
+			 	     
+		 	     	cout<<"player want to bowling in this match yes or no type:"<<i+1<<":";
+		 	     	cin>>input13;
+		 	     	if(input13==yes)
+		 	     	{    
+		 	     	    int input1;
+		 	     	    cout<<" how much innges batsmen play :";
+		 	     	    cin>>input1;
+		 	     	    for(int i=0;i<input1;i++)
+		 	         	{
+		 	     			cout<<"Enter the wikets"<<i+1<<":";
+		 	                 cin>>runs[i];
+		 	                 inngs++;
+				    	}
 					}
+
+				}
 				}
 				if(role[i]==Allrounder) {
 					cout << "Enter the player's Runs " << i + 1 << ": ";
-					for (int i = 0; i < match_played; ++i) {
+					for (int i = 0; i < matchplayed; ++i) {
 						cout <<"Match NO " << i + 1 << ": ";
 						cin>>runs[i];
 					}
 
 					cout << "Enter the player's Wickets " << i + 1 << ": ";
-					for (int i = 0; i < match_played; ++i) {
+					for (int i = 0; i < matchplayed; ++i) {
 						cout <<"Match No Wickets" << i + 1 << ": ";
 					}
+					
+					
 
+				}
 				}
 
 
 			}
-		}
-
-		void wkt_Player_data() {
-
-		}
-
-		void runs_Player_data() {
-
-		}
-
+			int len=sizeof(runs)/sizeof(runs[0]);
+			void sort()
+			{
+				 	for(int i=0;i<n-1;i++)
+					{
+						for(int j=i+1;j<=n;j++)
+						{
+							if(a[i]<a[j])
+							{
+							
+								temp[i]=a[i];
+								a[i]=a[j];
+								a[j]=temp[i];
+							}	
+						}
+					}
+			}
+		
 
 		void innings_Player_data() {
 
@@ -141,6 +207,17 @@ class Cricket {
 //
 //	    }
 
+
+
+};
+
+int main() {
+	Cricket c1;
+	c1.get_Player_data();
+
+
+
+}
 
 
 };
