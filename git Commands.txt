@@ -6,7 +6,7 @@ cat  ~/.ssh/id_ed25519.pub
 git push -u origin master
 
 	Amount= pi*((pow((1 + rate / 100), time)));;
-
+https://upthrustsystems.com/help.html
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
