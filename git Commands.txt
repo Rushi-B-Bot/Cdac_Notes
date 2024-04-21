@@ -5,6 +5,9 @@ eval $(ssh-agent -s)
 cat  ~/.ssh/id_ed25519.pub
 git push -u origin master
 System.ArgumentException: 'Keyword not supported: 'trust server certificate'.'
+;Encrypt=True;
+
+Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;Encrypt=True;
 
 	Amount= pi*((pow((1 + rate / 100), time)));;
 https://upthrustsystems.com/help.html
