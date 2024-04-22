@@ -69,6 +69,8 @@ namespace Assignment1
 //Employee database
 
 
+using System.Transactions;
+
 namespace Assignment_Collection
 {
     internal class Program
@@ -76,7 +78,7 @@ namespace Assignment_Collection
         static void Main(string[] args)
         {
             //Console.WriteLine("Hello, World!");
-            Emp[] emp = new Emp[3];
+            Emp[] emp = new Emp[2];
             for (int i = 0; i < emp.Length; i++)
             {
                 Emp e1 = new Emp();
@@ -88,38 +90,41 @@ namespace Assignment_Collection
                 e1.EmpAddress = Console.ReadLine();
                 emp[i] = e1;
             }
-            Console.WriteLine("Enter the position of record you want");
+            Console.WriteLine("Enter the position of record you want see: ");
             int pos = Convert.ToInt32(Console.ReadLine());
             //printing record
             foreach (Emp e in emp)
             {
                 if (e.EmpId == emp[pos - 1].EmpId)
                 {
-                    Console.WriteLine("Second record");
                     Console.WriteLine(e.EmpId + "   " + e.EmpName + "   " + e.EmpAddress);
                     break;
                 }
             }
-            //updating name
-            Console.WriteLine("Enter the position name you want to update");
-            int index = Convert.ToInt32(Console.ReadLine());
-            foreach (Emp e in emp)
+
+
+            Console.WriteLine("Do you want to change 1.name  2.address: ");
+            int ch = Convert.ToInt32(Console.ReadLine());
+            if (ch == 1)
             {
-
-                if (e.EmpId == emp[index - 1].EmpId)
-                {
-                    Console.WriteLine("Enter updated name");
-                    String s = Console.ReadLine();
-                    e.EmpAddress = s;
-                }
-
-
+                //updating name
+                        Console.WriteLine("Enter name: ");
+                        String s = Console.ReadLine();
+                        emp[pos-1].EmpName = s;
             }
+            else if (ch == 2)
+            {
+                //updating address
+                    Console.WriteLine("Enter address: ");
+                    String s = Console.ReadLine();
+                    emp[pos-1].EmpAddress = s;
+            }
+
+            Console.WriteLine("\nAll records:");
             foreach (Emp e in emp)
             {
                 Console.WriteLine(e.EmpId + "  " + e.EmpName + "  " + e.EmpAddress);
             }
-
 
 
         }
