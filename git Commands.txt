@@ -7,3 +7,68 @@ Amount= pi*((pow((1 + rate / 100), time)));;
 https://upthrustsystems.com/help.html
 
 
+namespace Serialization_01
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+             int CustomerName = 2;
+             int depositeAmount = 3;
+             string[,] deposite = new string[CustomerName, depositeAmount];
+            string[] Name = new string[CustomerName];
+              run();
+             void run()
+            {
+
+         
+                for (int i = 0; i < CustomerName; ++i)
+                {
+                Console.Write($"\n  ***************  Customer No : {i + 1}*************** \n");
+
+                Console.Write($"\n Nominee Name : {i + 1}: ");
+                    Name[i] = Console.ReadLine();
+                    input();
+                }
+            }
+            void input()
+            {
+                // Using nested loop to store values in a 2d array
+                for (int i = 0; i < CustomerName; ++i)
+                {
+                
+                    for (int j = 0; j < depositeAmount; ++j)
+                    {
+                        Console.Write($"\n Deposite Amount :{j + 1}:");
+                        deposite[i, j] = Console.ReadLine();
+                        run();
+                    }
+                    
+                }
+
+                Console.Write($"\n\n\\t\t\t\t *************** Display Deposite  :*************** \n");
+
+                for (int i = 0; i < CustomerName; ++i)
+                {
+                    Console.Write($"\n  ***************  Customer name {i + 1}:***************\n " + Name[i]);
+
+                    for (int j = 0; j < depositeAmount; ++j)
+                    {
+                        Console.Write($"\n Nominee Name : {i + 1} :: " + Name[i]);
+                        Console.Write($"\n Nominee : {i + 1}  Deposite Amount :{j + 1}:" + deposite[i, j]);
+                        Console.WriteLine();
+                    }
+                 
+                }
+
+            }
+            
+        
+            
+        }
+    }
+}
+
+
+
