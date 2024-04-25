@@ -1,3 +1,319 @@
+
+[25/04, 2:11 am] Aarti IET: using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Remoting.Messaging;
+using System.Runtime.Remoting.Services;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using static Serialization_01.Program;
+
+namespace Serialization_01
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string filepath = @"F:\Notes\.net\Demo\";
+            Console.WriteLine("Enter file name: ");
+            string filename = Console.ReadLine();
+            string fullpath = filepath + filename;
+
+            FileStream fs = null;
+            if (File.Exists(fullpath))
+            {
+                fs = new FileStream(fullpath, FileMode.Append, FileAccess.Write);
+            }
+            else
+            {
+                fs = new FileStream(fullpath, FileMode.CreateNew, FileAccess.Write);
+            }
+
+            Customer c1 = new Customer();
+            Console.WriteLine("Enter customer id: ");
+            c1.CId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter customer name: ");
+            c1.CName = Console.ReadLine();
+            Console.WriteLine("Enter customer Address: ");
+            c1.CAddress = Console.ReadLine();
+
+            Employee e1 = new Employee();
+            Console.WriteLine("\n\nEnter employee id: ");
+            e1.EId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter employee name: ");
+            e1.EName = Console.ReadLine();
+            Console.WriteLine("Enter employee Address: ");
+            e1.EAddress = Console.ReadLine();
+
+            //ArrayList arrForTxt = new ArrayList();
+            //arrForTxt.Add(e1);
+            //arrForTxt.Add(c1);
+
+
+
+            Console.WriteLine("1.Binary format  2.XML format  3.JSON format");
+            int ch = Convert.ToInt32(Console.ReadLine());
+            
+            switch (ch)
+            {
+                case 1:
+                    //Serialize
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, e1);
+                    bf.Serialize(fs, c1);
+                    fs.Close();
+                    Console.WriteLine("Serialization done ...");
+
+                    //Deserialize
+                    if (File.Exists(fullpath))
+                    {
+                        fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
+                    }
+                    Employee emp = bf.Deserialize(fs) as Employee;
+                    Customer cus = bf.Deserialize(fs) as Customer;
+
+                    cus.getDetails();
+                    emp.getDetails();
+                    Console.ReadLine();
+                    break;
+
+                case 2:
+                    Type type = e1.GetType();
+                    XmlSerializer xs = new XmlSerializer(type);
+                    XmlSerializer xs1 = new XmlSerializer(typeof(Employee));
+                    xs1.Serialize(fs, e1);
+
+                    Type type1 = c1.GetType();
+                    XmlSerializer cs = new XmlSerializer(type1);
+                    XmlSerializer cs1 = new XmlSerializer(typeof(Customer));
+                    cs1.Serialize(fs, c1);
+
+                    fs.Close();
+                    Console.WriteLine("Serialization done ...");
+
+                    //Deserialize
+                    //if (File.Exists(fullpath))
+                    //{
+                    //    fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
+                    //}
+
+                    //Employee employee = xs.Deserialize(fs) as Employee;
+                    //Customer customer = cs.Deserialize(fs) as Customer;
+                    //employee.getDetails();
+                    //customer.getDetails();
+                    //Console.ReadLine();
+                    break;
+
+                case 3:
+                    SoapFormatter sf = new SoapFormatter();
+                    sf.Serialize(fs, c1);
+                    sf.Serialize(fs, e1);
+                    fs.Close();
+                    Console.WriteLine("Serialization done ...");
+
+                    if (File.Exists(fullpath))
+                    {
+                        fs = new FileStream(fullpath, FileMode.Open, FileAccess.Read);
+                    }
+                    Customer customer = sf.Deserialize(fs) as Customer;
+                    
+                    Employee employee = sf.Deserialize(fs) as Employee;
+                    customer.getDetails();
+                    employee.getDetails();
+                    Console.ReadLine();
+                    break;
+            }
+        }
+    }
+
+    [Serializable]
+    public class Customer
+    {
+        private int Cid;
+        private string Cname;    
+        private string Caddress;
+
+        public int CId
+        {
+            get => Cid ;
+            set => Cid = value;
+        }
+        
+        public string CName
+        {
+            get => Cname;
+            set => Cname = value;
+        }
+
+        public string CAddress
+        {
+            get => Caddress;
+            set => Caddress = value;
+        }
+
+        public void getDetails()
+        {
+            string name = "Customer id:"+CId+"  Customer Name:"+CName+"  Customer Address:"+CAddress;
+            Console.WriteLine(name);
+        }
+    }
+
+    [Serializable]
+    public class Employee
+    {
+        private int Eid;
+        private string Ename;
+        private string Eaddress;
+
+        public int EId { get => Eid; set => Eid = value; }
+        public string EName { get => Ename; set => Ename = value; }
+        public string EAddress { get => Eaddress; set => Eaddress = value; }
+
+        public void getDetails()
+        {
+            string name = "Employee id:"+EId+"  Employee Name:"+EName+"  Employee Address:"+EAddress;
+            Console.WriteLine(name);
+        }
+    }
+}
+[25/04, 2:54 am] Aarti IET: namespace _Collection
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] arr1 = new string[2];
+            arr1[0] = "Hello";
+            arr1[1] = "Sir";
+
+            foreach (string item in arr1)
+            {
+                Console.WriteLine(item);
+            }
+            
+            Console.WriteLine("\n");
+
+            int[] arr = new int[3];
+            arr[0] = 100;
+            arr[1] = 200;
+            arr[2] = 300;
+
+            foreach (int item in arr)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n");
+
+            double[] arr3 = new double[2];
+            arr3[0] = 23.33;
+            arr3[1] = 43.44;
+
+            foreach(double item in arr3)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n");
+
+            float[] arr4 = new float[2];
+            arr4[0] = 5.4f;
+            arr4[1] = 2.7f;
+
+            foreach(float item in arr4)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n");
+
+            char[] arr5 = new char[2];
+            arr[0] = 'V';
+            arr[1] = 'A';
+
+            foreach(char item in arr5)
+            {
+                Console.WriteLine(item);
+            }
+
+            Employee emp1 = new Employee();
+            emp1.EId = 1;
+            emp1.EName = "Nikhil";
+            emp1.EAddress = "Baramati";
+
+            Employee emp2 = new Employee();
+            emp2.EId = 2;
+            emp2.EName = "Sagar";
+            emp2.EAddress = "Beed";
+
+            Employee emp3 = new Employee();
+            emp3.EId = 3;
+            emp3.EName = "Siddhi";
+            emp3.EAddress = "Pune";
+
+            object[] objArr = new object[6];
+            objArr[0] = 100;//Boxing
+            objArr[1] = "some nonsense value";
+            objArr[2] = emp1;
+            objArr[3] = 23.33;
+            objArr[4] = emp3;
+            foreach (object obj in objArr)
+            {
+                if (obj is int)
+                {
+                    int j = Convert.ToInt32(obj);
+                    Console.WriteLine("Int value = {0}", j);
+                }
+                if (obj is double)
+                {
+                    double d = Convert.ToDouble(obj);
+                    Console.WriteLine("Double value = {0}", d);
+                }
+                if (obj is string)
+                {
+                    string s = Convert.ToString(obj);
+                    Console.WriteLine("String value = {0}", s);
+                }
+                if (obj is Employee)
+                {
+                    Employee emp = obj as Employee;
+                    emp.getDetails();
+                }
+                
+            }
+        }
+    }
+
+    public class Employee
+    {
+        private int Eid;
+        private string Ename;
+        private string Eaddress;
+
+        public int EId { get => Eid; set => Eid = value; }
+        public string EName { get => Ename; set => Ename = value; }
+        public string EAddress { get => Eaddress; set => Eaddress = value; }
+
+        public void getDetails()
+        {
+            string name = "Employee id:" + EId + "  Employee Name:" + EName + "  Employee Address:" + EAddress;
+            Console.WriteLine(name);
+        }
+    }
+}
+
+
+
+
 namespace _3_Assignment_File_Logger
 {
     internal class Program
