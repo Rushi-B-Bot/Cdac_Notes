@@ -1,43 +1,59 @@
-package com.Student;
-
 import java.util.Scanner;
 
-public class Student_GetData1 {
+public class TestArra3 {
 
-	public Student_GetData1(int n) {
-		 Studnet_DisplayData   S1[ ]= new Studnet_DisplayData [n];
-		 Scanner obj = new Scanner(System.in);
-		 for(int i=0;i<n;i++)
-		 {
-			 System.out.println("Enter Student of id " + (i + 1) + ":");
-	            int id = obj.nextInt();
-	            System.out.println("Enter Student of name " + (i + 1) + ":");
-	            String name = obj.next();
-	            System.out.println("Enter Student Addmisson Date " + (i + 1) + ":");
-	            String Date = obj.next();
-	            
-	            S1[i]=new Studnet_DisplayData(id,name,Date);	 
-		 }
-		 
-		 System.out.println("enter Student id to be search");
-			int pid=obj.nextInt();
-			Studnet_DisplayData p=Student_GetData1.searchPerson(S1,pid);
-			if(p!=null) {
-				System.out.println(p);
-			}else {
-				System.out.println("not found");
-			}
-		 
-
+	public static void main(String[] args) {
+		int[][] arr2=new int[3][3];
+		Scanner sc=new Scanner(System.in);
+		int choice=0;
+		do {
+		System.out.println("1. add data\n 2. display data\n 3. transpose of matrix\n");
+		System.out.println("4. rowwise sum\n 5. columnwise sum\n 6. matrix multiplication\n");
+		System.out.println("7.matrix addition\n 8. find maximum of array\n");
+		System.out.println("9. find maximum row wise\n 10. find max columnwise\n 11. exit\n choice:");
+		choice=sc.nextInt();
+		switch(choice) {
+		case 1:
+			ArrayService.addnewdata(arr2);
+			break;
+		case 2:
+			ArrayService.displaydata(arr2);
+			break;
+		case 3:
+			ArrayService.transposeofmatrix(arr2);
+			break;
+		case 4:
+			ArrayService.rowwisesum(arr2);
+			break;
+		case 5:
+			ArrayService.columnwisesum(arr2);
+			break;
+		case 6:
+			ArrayService.matrixmultiplication(arr2);
+			break;
+		case 7:
+			ArrayService.matrixAddition(arr2);
+			break;
+		case 8:
+			ArrayService.maxofarray(arr2);
+				break;
+		case 9:
+			ArrayService.rowwisemax(arr2);
+			break;
+		case 10:
+			ArrayService.columnwisemax(arr2);
+			break;
+		
+		case 11:
+			//System.exit(0);
+			sc.close();
+			System.out.println("Thank you for visiting....");
+		default:
+			System.out.println("Wrong choice");
+			break;
+		}
+		
+		}while(choice!=8);
 	}
 
-	private static Studnet_DisplayData searchPerson(Studnet_DisplayData[] s1, int pid) {
-	
-		for(Studnet_DisplayData p:s1) {   
-			if(p.getId()==pid) {
-				return p;
-			}
-		}
-		return null;
-	} 
 }
