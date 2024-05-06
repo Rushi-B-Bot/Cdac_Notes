@@ -1,59 +1,313 @@
 import java.util.Scanner;
 
-public class TestArra3 {
+public class ArrayService {
 
-	public static void main(String[] args) {
-		int[][] arr2=new int[3][3];
+	public static void addnewdata(int[][] arr2) {
 		Scanner sc=new Scanner(System.in);
-		int choice=0;
-		do {
-		System.out.println("1. add data\n 2. display data\n 3. transpose of matrix\n");
-		System.out.println("4. rowwise sum\n 5. columnwise sum\n 6. matrix multiplication\n");
-		System.out.println("7.matrix addition\n 8. find maximum of array\n");
-		System.out.println("9. find maximum row wise\n 10. find max columnwise\n 11. exit\n choice:");
-		choice=sc.nextInt();
-		switch(choice) {
-		case 1:
-			ArrayService.addnewdata(arr2);
-			break;
-		case 2:
-			ArrayService.displaydata(arr2);
-			break;
-		case 3:
-			ArrayService.transposeofmatrix(arr2);
-			break;
-		case 4:
-			ArrayService.rowwisesum(arr2);
-			break;
-		case 5:
-			ArrayService.columnwisesum(arr2);
-			break;
-		case 6:
-			ArrayService.matrixmultiplication(arr2);
-			break;
-		case 7:
-			ArrayService.matrixAddition(arr2);
-			break;
-		case 8:
-			ArrayService.maxofarray(arr2);
-				break;
-		case 9:
-			ArrayService.rowwisemax(arr2);
-			break;
-		case 10:
-			ArrayService.columnwisemax(arr2);
-			break;
-		
-		case 11:
-			//System.exit(0);
-			sc.close();
-			System.out.println("Thank you for visiting....");
-		default:
-			System.out.println("Wrong choice");
-			break;
-		}
-		
-		}while(choice!=8);
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.println("enetr number at row "+i+"Column"+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}		
+	}
+	
+	public static void displaydata(int[][] arr2) {
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}	
 	}
 
+	public static void rowwisesum(int[][] arr2) {
+		int[][] arr= {{3,2,1},{1,4,2},{6,8,5}};
+		int sum=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=0;j<arr[i].length;j++)
+			{
+				sum=sum+arr[i][j];
+				
+			}
+			System.out.println("Sum of row "+i+":"+sum);
+			sum=0;
+		}
+	}
+		
+	public static void columnwisesum(int[][] arr2) {
+		int[][] arr= {{3,2,1},{1,4,2},{6,8,5}};
+		int sum=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			for(int j=0;j<arr[i].length;j++)
+			{
+				sum=sum+arr[j][i];				
+			}
+			System.out.println("Sum of column "+i+":"+sum);
+			sum=0;	
+		}
+	}
+
+	public static void matrixAddition(int[][] arr2) {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("**********Input for first Matrix*************");
+		System.out.println();
+		for (int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2.length;j++)
+			{
+				System.out.println("Enter number at row "+i+"and"+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		System.out.println();
+		System.out.println("**********Input for second Matrix*************");
+		System.out.println();
+		
+		int[][] arr3=new int[3][3];
+		for (int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				System.out.println("Enter number at row "+i+"and"+j);
+				arr3[i][j]=sc.nextInt();
+			}
+		}
+		
+		System.out.println("**********First Matrix*************");
+		System.out.println();
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2.length;j++)
+			{
+				System.out.print(arr2[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("**********second Matrix*************");
+		System.out.println();
+		for(int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				System.out.print(arr3[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		//Matrix Addition
+		System.out.println();
+		int[][] arr4=new int[3][3];
+		int sum=0;
+		for(int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				sum=arr2[i][j]+arr3[i][j];
+				arr4[i][j]=sum;
+				System.out.print(arr4[i][j]+" ");
+			}	
+			System.out.println();
+		}
+		
+		
+	}
+
+	public static void matrixmultiplication(int[][] arr2) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("**********Input for first Matrix*************");
+		System.out.println();
+		for (int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2.length;j++)
+			{
+				System.out.println("Enter number at row "+i+"and"+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		System.out.println();
+		System.out.println("**********Input for second Matrix*************");
+		System.out.println();
+		
+		int[][] arr3=new int[3][3];
+		for (int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				System.out.println("Enter number at row "+i+"and"+j);
+				arr3[i][j]=sc.nextInt();
+			}
+		}
+		
+		System.out.println("**********First Matrix*************");
+		System.out.println();
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2.length;j++)
+			{
+				System.out.print(arr2[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("**********second Matrix*************");
+		System.out.println();
+		for(int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				System.out.print(arr3[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("**********Multiplication of 2 Matrices*************");
+		System.out.println();
+		
+		for(int i=0;i<arr3.length;i++)
+		{
+			for(int j=0;j<arr3.length;j++)
+			{
+				System.out.print(arr3[i][j]+" ");
+			}
+			System.out.println();
+		}
+		
+	}
+
+	public static void maxofarray(int[][] arr2) {
+		int max=0;
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				System.out.println("Enter number for row "+i+"and column "+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				if(max<arr2[i][j])
+					max=arr2[i][j];
+			}
+		}
+		System.out.println("Maximum of array is: " +max);
+	}
+
+	public static void rowwisemax(int[][] arr2) {
+		int max=0;
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				System.out.println("Enter number for row "+i+"and column "+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				if(max<arr2[i][j])
+					max=arr2[i][j];
+			}
+			System.out.println("Maximum of row "+i+"is: " +max);
+			max=0;
+		}
+		
+	}
+		
+	public static void columnwisemax (int[][] arr2) {
+		int max=0;
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				System.out.println("Enter number for row "+i+"and column "+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				if(max<arr2[j][i])
+					max=arr2[j][i];
+			}
+			System.out.println("Maximum of column "+i+"is: " +max);
+			max=0;
+		}
+	}
+
+	public static void transposeofmatrix(int[][] arr2) {
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<arr2.length;i++)
+		{
+			for(int j=0;j<arr2[i].length;j++)
+			{
+				System.out.println("Enter number for row "+i+"and column "+j);
+				arr2[i][j]=sc.nextInt();
+			}
+		}
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+				if(i!=j)
+				{
+					int temp=arr2[i][j];
+					arr2[i][j]=arr2[j][i];
+					arr2[j][i]=temp;
+				}		
+			}		
+		}
+		System.out.println("Transpose of array:");
+		for(int i=0;i<arr2.length;i++) {
+			for(int j=0;j<arr2[i].length;j++) {
+					System.out.print(arr2[j][i]);
+			}		
+			System.out.println();
+		}
+	}
 }
