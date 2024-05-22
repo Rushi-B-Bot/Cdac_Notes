@@ -1,0 +1,85 @@
+
+Like Operator:
+--------------
+==> Pattern Matching
+==> Special two characters % and _
+==> case is not important
+
+% ------> any characters (inlcuding zero)
+_ ------> single character
+
+Example:
+--------
+names starts with character 'a' ------> like 'a%'
+names ends with character 'a' --------> like '%a'
+names having character 'a' -----------> like '%a%'
+
+names having only three characters ---> like '___'
+names having 5 characters and starts with j ---------> like 'J____'
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like 'a%';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '%a%';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name not like '%a%';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '___';
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '____';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '_____';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like 'a____';
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like 'do%';
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '%el';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '%ee%';
+
+
+mysql> select first_name,salary from myemp
+    -> where first_name like '%ll%';
+
+
+Example:
+--------
+mysql> select first_name,salary from myemp
+    -> where first_name like '% %';

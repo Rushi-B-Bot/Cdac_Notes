@@ -1,0 +1,65 @@
+The MySQL DROP TABLE Statement
+
+==>The DROP TABLE statement is used to drop an existing table in a database.
+==>The DROP TABLE statement removes a table and its data permanently from the database. In MySQL, you can also remove multiple tables using a single DROP TABLE statement, each table is separated by a comma (,).
+
+
+Syntax
+DROP TABLE table_name;
+=========================================================================================
+
+==>The DROP TABLE statement is used to drop one or more existing tables from the database. It removes the table definition and all the data inside the table, so be careful while using this statement.
+
+DROP TABLE TABLENAME1,TABLENAME2;
+============================================
+MySQL TRUNCATE Table vs. DROP Table
+
+You can also use the DROP TABLE command to delete the complete table, but it will remove complete table data and structure both. You need to re-create the table again if you have to store some data. But in the case of TRUNCATE TABLE, it removes only table data, not structure. You don't need to re-create the table again because the table structure already exists.
+
+
+
+======================================================================================
+ASSIGNMENTS
+1) Using MySQL DROP TABLE to drop a single table example
+
+First, create a table named insurances for testing purposes:
+
+CREATE TABLE insurances (
+    id INT AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    effectiveDate DATE NOT NULL,
+    duration INT NOT NULL,
+    amount DEC(10 , 2 ) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+Second, use the DROP TABLE to delete the insurances table:
+DROP TABLE insurances;
+===============================================================
+2) Using MySQL DROP TABLE to drop multiple tables
+
+First, create two tables named CarAccessories and CarGadgets:
+
+CREATE TABLE CarAccessories (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    price DEC(10 , 2 ) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE CarGadgets (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    price DEC(10 , 2 ) NOT NULL,
+    PRIMARY KEY(id)
+);
+Second, use the DROP TABLE statement to drop the two tables:
+DROP TABLE CarAccessories, CarGadgets;
+==========================================================================
+
+
+
+
+
+
+

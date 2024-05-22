@@ -1,0 +1,58 @@
+
+select * from myemp;
+select * from myemp limit 10;
+ select first_name,hire_date,job_id,salary from myemp limit 5;
+ select first_name,salary,salary*0.02,salary+salary*0.02 from myemp limit 5;
+
+mysql> select first_name,salary,
+    -> salary*0.02 as 'Bonus',
+    -> salary+salary*0.02 as 'Total Salary'
+    -> from myemp
+    -> limit 5;
+
+===================================================
+DISTINCT
+
+==>The SELECT DISTINCT statement is used to return only distinct (different) values.
+==>The DISTINCT clause filters and removes duplicate records from the resultset; hence, unique records will be left.
+==>In MySQL, the DISTINCT clause doesn't ignore NULL values. So if you are using the DISTINCT clause in your SQL statement, your result set will include NULL as a distinct value.
+
+Syntax:
+
+    SELECT DISTINCT expressions  
+    FROM tables  
+    [WHERE conditions];  
+
+mysql> select distinct dep_id from myemp;
+mysql> select distinct job_id from myemp;
+mysql> select distinct dep_id,mgr_id from myemp;
+
+
+
+Example:
+Select all the different countries from the "Customers" table:
+SELECT DISTINCT Country FROM Customers;
+
+Count Distinct
+By using the DISTINCT keyword in a function called COUNT, we can return the number of different countries.
+Example
+SELECT COUNT(DISTINCT Country) FROM Customers;
+==============================================================================================
+MySQL DISTINCT and NULL values
+When you specify a column that has NULL values in the DISTINCT clause, the DISTINCT clause will keep only one NULL value because it considers all NULL values are the same.
+
+SELECT DISTINCT state
+FROM customers;
+
+========================================================================================
+ASSIGNMENTS
+
+
+We’ll use the employees table from the sample database:
+1)select unique last names by adding the DISTINCT clause  
+2)get a unique combination of city and state from the customers table
+
+
+
+===============================================================
+

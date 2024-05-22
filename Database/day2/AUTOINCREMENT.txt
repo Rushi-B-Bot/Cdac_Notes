@@ -1,0 +1,161 @@
+
+AUTO Increment:-
+---------------
+==> It is a primary key (unique and not null).
+==> unique ---> no  repeated data
+==> not null -> we have to provide value
+
+keyword: AUTO_INCREMENT
+
+mysql> create table student(
+    -> id int primary key auto_increment,
+    -> name varchar(255));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'John');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student values(2,'Jo');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student(name) values('Prakash');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | John    |
+|  2 | Jo      |
+|  3 | Prakash |
++----+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(100,'Kalyan');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(name) values('Kumar');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++-----+---------+
+| id  | name    |
++-----+---------+
+|   1 | John    |
+|   2 | Jo      |
+|   3 | Prakash |
+| 100 | Kalyan  |
+| 101 | Kumar   |
++-----+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+---------+
+| id  | name    |
++-----+---------+
+|   1 | John    |
+|   2 | Jo      |
+|   3 | Prakash |
+| 100 | Kalyan  |
+| 101 | Kumar   |
++-----+---------+
+5 rows in set (0.00 sec)
+
+mysql> delete from student where id=3;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++-----+--------+
+| id  | name   |
++-----+--------+
+|   1 | John   |
+|   2 | Jo     |
+| 100 | Kalyan |
+| 101 | Kumar  |
++-----+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student;
++-----+--------+
+| id  | name   |
++-----+--------+
+|   1 | John   |
+|   2 | Jo     |
+| 100 | Kalyan |
+| 101 | Kumar  |
++-----+--------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student;
+Query OK, 4 rows affected (0.02 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> insert into student(name) values('AAA');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student(name) values('BBB');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++-----+------+
+| id  | name |
++-----+------+
+| 102 | AAA  |
+| 103 | BBB  |
++-----+------+
+2 rows in set (0.00 sec)
+
+mysql> truncate table student;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from student;
+Empty set (0.01 sec)
+
+mysql> insert into student(name) values('CCC');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(name) values('DDD');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into student(name) values('EEE');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student;
++----+------+
+| id | name |
++----+------+
+|  1 | CCC  |
+|  2 | DDD  |
+|  3 | EEE  |
++----+
+
+------+
+3 rows in set (0.00 sec)
+
+What is the diff between delete, drop and truncate?
+----------------------------------------------------
+
+delete ----> deletes content, not table objects --> table structure will be existed
+drop ------> drop table from db ------------------> table structure will be gone
+truncate --> deletes content, table objects ------> table structure will be existed
+
+
+
+
+
+
+
+
+
+

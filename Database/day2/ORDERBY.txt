@@ -1,0 +1,185 @@
+
+The MySQL ORDER BY Keyword
+
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+Syntax:
+
+    SELECT expressions  
+    FROM tables  
+    [WHERE conditions]  
+    ORDER BY expression [ ASC | DESC ];  
+
+Example:
+--------
+mysql> select first_name,salary,dep_id from myemp
+    -> order by dep_id asc
+    -> limit 15;
+
+mysql> select first_name,salary,dep_id from myemp
+    -> order by dep_id desc
+    -> limit 15;
+=================================================================
+
+
+---------------------------------
+
+Example: Sort all the emp details in asc order based on dep_id version1
+-----------------------------------------------------------------------
+mysql> select emp_id,first_name,salary,mgr_id,dep_id
+    -> from myemp
+    -> order by dep_id;
+
+Example: Sort all the emp details in asc order based on dep_id 
+-----------------------------------------------------------------------
+mysql> select emp_id,first_name,salary,mgr_id,dep_id
+    -> from myemp
+    -> order by dep_id asc;
+
+Example: Sort all the emp details in desc order based on dep_id 
+mysql> select emp_id,first_name,salary,mgr_id,dep_id
+    -> from myemp
+    -> order by dep_id desc;
+
+Example: sort emp details from junior to senior [based on hire_date]
+--------------------------------------------------------------------
+mysql> select emp_id,first_name,salary,hire_date,dep_id
+    -> from myemp
+    -> order by hire_date desc;
+
+
+Example: sort emp details from senior to junior [based on hire_date]
+--------------------------------------------------------------------
+mysql> select emp_id,first_name,salary,hire_date,dep_id
+    -> from myemp
+    -> order by hire_date asc;
+
+Example: sort emp details based on first dep_id and then salary
+---------------------------------------------------------------
+mysql> select emp_id,first_name,salary,dep_id
+    -> from myemp
+    -> order by dep_id asc, salary asc;
+
+mysql> select emp_id,first_name,salary,dep_id
+    -> from myemp
+    -> order by dep_id asc, salary desc;
+
+mysql> select emp_id,first_name,salary,dep_id
+    -> from myemp
+    -> order by dep_id desc, salary asc;
+
+mysql> select emp_id,first_name,salary,dep_id
+    -> from myemp
+    -> order by dep_id desc, salary desc;
+Example: sort all the emp in customized order
+
+--------------------------------------------------------------------------------------------------------------
+MySQL ORDER BY and NULL
+In MySQL, NULL comes before non-NULL values. Therefore, when you the ORDER BY clause with the ASC option, NULLs appear first in the result set.
+However, if you use the ORDER BY with the DESC option, NULLs will appear last in the result set.
+=========================================================================
+
+
+ASSIGNMENTS
+Execute the following query:
+
+    SELECT *  
+    FROM officers  
+    WHERE address = 'Lucknow'  
+    ORDER BY officer_name;  
+
+===================
+Execute the following query:
+
+    SELECT *  
+    FROM officers  
+    WHERE address = 'Lucknow'  
+    ORDER BY officer_name ASC;  
+=====================================
+    SELECT *  
+    FROM officers  
+    WHERE address = 'Lucknow'  
+    ORDER BY officer_name DESC;   
+=============================================
+    SELECT officer_name, address  
+    FROM officers  
+    WHERE officer_id < 5  
+    ORDER BY officer_name DESC, address ASC;  
+
+
+
+==============================================================================================
+operators
+
+<
+<=
+>
+>=
+= equality
+!= or <>
+between
+not between
+and
+or
+not
+in
+not in
+is
+is not
+like
+
+Example:
+--------
+mysql> select * from emp where id=6;
+
+Example:
+--------
+select emp whose salary < 4000
+mysql> select * from emp where salary<4000;
+
+Example:
+--------
+select emp whose salary > 4000
+mysql> select * from emp where salary>4000;
+
+Example:
+--------
+mysql> select * from emp where salary>=4000;
+
+Example:
+-------
+salary is between 3k and 7k?
+mysql> select * from emp where salary>=3000 and salary<=7000;
+mysql> select * from emp where salary between 3000 and 7000;
+
+Example:
+--------
+mysql> select * from emp where salary not between 3000 and 7000;
+
+Example:
+--------
+whose id is not equal to 1
+mysql> select * from emp where id!=1;
+
+mysql> select * from emp where id<>1;
+
+Example:
+--------
+Details of emp where id is 3,4,5 or 6
+mysql> select * from emp where id in (3,4,5,6);
+
+Example:
+--------
+Details of emp where id is not in 3,4,5 or 6
+mysql> select * from emp where id not in (3,4,5,6);
+
+Example:
+--------
+mysql> select * from emp where salary is null;
+
+Example:
+--------
+mysql> select * from emp where salary is not null;
+
+

@@ -1,0 +1,56 @@
+MySQL TRUNCATE TABLE
+
+==>The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.
+==>The TRUNCATE statement in MySQL removes the complete data without removing its structure. It is a part of DDL or data definition language command. Generally, we use this command when we want to delete an entire data from a table without removing the table structure.
+==>The TRUNCATE command works the same as a DELETE command without using a WHERE clause that deletes complete rows from a table. However, the TRUNCATE command is more efficient as compared to the DELETE command because it removes and recreates the table instead of deleting single records one at a time. 
+==>Since this command internally drops the table and recreates it, the number of rows affected by the truncate statement is zero, unlike the delete statement that returns the number of deleted rows.
+==>In MySQL, the TRUNCATE TABLE statement allows you to delete all rows from a table.
+
+
+Syntax
+
+TRUNCATE [TABLE] table_name;
+=====================================================================
+MORE POINTS ON TRUNCATE:
+
+==>Use the TRUNCATE TABLE statement to delete all rows from a table efficiently.
+==>The TRUNCATE TABLE statement resets the AUTO_INCREMENT counter.The TRUNCATE TABLE statement resets the value in the AUTO_INCREMENT column to its initial value if the table has an AUTO_INCREMENT column.
+==>Unlike a DELETE statement, the number of rows affected by the TRUNCATE TABLE statement is 0
+==>We cannot use the WHERE clause with this command so that filtering of records is not possible.
+==>We cannot rollback the deleted data after executing this command because the log is not maintained while performing this operation.
+==>We cannot use the truncate statement when a table is referenced by a foreign key
+=============================================================================================
+
+Let us demonstrate how we can truncate the table with the help of an example. First, we are going to create a table named "customer" using the below statement:
+
+CREATE TABLE customer (    
+    Id int ,     
+    Name varchar(45) ,     
+    Product varchar(45) ,     
+    Country varchar(25) ,     
+    Year int 
+);    
+
+INSERT INTO customer ( Id, Name, Product, Country, Year)     
+VALUES (1, 'Stephen', 'Computer', 'USA', 2015),     
+(2, 'Joseph', 'Laptop', 'India', 2016),     
+(3, 'John', 'TV', 'USA', 2016),    
+(4, 'Donald', 'Laptop', 'England', 2015),    
+(5, 'Joseph', 'Mobile', 'India', 2015),    
+(6, 'Peter', 'Mouse', 'England', 2016);  
+Now, verify the table by executing the SELECT statement whether the records inserted or not:
+
+     mysql> TRUNCATE TABLE customer;  
+
+As we can see, this query returns 0 rows are affected even if all the table records are deleted. We can verify the deletion of the data by executing the SELECT statement again. This command gives the following output that shows none of the records present in the table:
+=======================================================================
+QUES:How to truncate all tables in MySQL?
+The TRUNCATE statement in MySQL will delete only one table at a time. If we want to delete more than one table, we need to execute the separate TRUNCATE statement. The below example shows how to truncate multiple tables in MySQL:
+    TRUNCATE TABLE table_name1;  
+    TRUNCATE TABLE table_name2;  
+    TRUNCATE TABLE table_name3;  
+=========================================================================================
+
+
+
+
