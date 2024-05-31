@@ -1,8 +1,4 @@
-https://hackernoon.com/20-string-coding-interview-questions-for-programmers-6b6735b6d31c
-https://hackernoon.com/20-string-coding-interview-questions-for-programmers-6b6735b6d31c
-https://www.codezclub.com/cpp-solved-programs-problems-solutions/c-string-solved-programs-examples-solutions/
-https://prepinsta.com/c-plus-plus/strings/
-https://www.w3resource.com/cpp-exercises/string/index.php
+
 
 
 
