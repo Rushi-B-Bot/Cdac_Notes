@@ -9,7 +9,7 @@ https://www.programiz.com/dsa/bubble-sort
 
 
 https://www.youtube.com/watch?v=lAubwGoD9qU&list=PLlhM4lkb2sEgJDGj2zOJnp0y5A5E6li1k    //spring in  smart 
-https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEYQsR    //React, Spring Boot, MySql
+https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEYQsR    //React, Spring Boot, MySql project
 package com.demo.service;   
 
 import java.util.Scanner;
