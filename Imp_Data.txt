@@ -1,9 +1,9 @@
 
-
-
-
-
-
+https://www.tutorjoes.in/java_programming_tutorial/array_exercise_programs_in_java
+https://www.codesdope.com/practice/java-array/
+https://www.geeksforgeeks.org/java-array-programs/
+https://www.w3resource.com/java-exercises/array/index.php
+https://www.geeksforgeeks.org/top-50-array-coding-problems-for-interviews/
 
 
 
