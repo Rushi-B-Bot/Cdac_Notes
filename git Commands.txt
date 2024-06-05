@@ -1,2 +1,17 @@
 https://actsfeedback.cdac.in/feedbackSystem/
 Amount= pi*((pow((1 + rate / 100), time)));;
+    {
+    	
+     String str="@rushi.kesh_ i@%s boy",str2 = " " ,str3="RusHiKeeShh";
+	char ch;
+	for(int i=0;i<str.length();i++)
+	{
+	 
+	     if(str.charAt(i)>=65 && str.charAt(i)<=90 || str.charAt(i)>= 97 && str.charAt(i)<=122)	
+	     {
+	    	ch=str.charAt(i);
+	    	str2+=ch;
+	     }
+	}
+       System.out.print(str2);
+	}
