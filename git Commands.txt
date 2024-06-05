@@ -15,3 +15,27 @@ Amount= pi*((pow((1 + rate / 100), time)));;
 	}
        System.out.print(str2);
 	}
+
+
+
+
+public class SpaceRemove {
+	public static void main(String[] args)
+	{
+	    	String str3="RusH iKee Shh Is Boy";
+	    	String temp=" ";
+	    	char ch;
+	    	for(int i=0;i<str3.length();i++)
+	    	{
+
+	   	     if(str3.charAt(i)>=65 && str3.charAt(i)<=90 || str3.charAt(i)>= 97 && str3.charAt(i)<=122)	
+	   	     {
+	   	    	ch=str3.charAt(i);
+	   	    	temp+=ch;
+	   	     }
+	    		
+	    }
+	    System.out.println("4."+temp);
+	}
+
+}
