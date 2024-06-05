@@ -6,6 +6,8 @@ https://www.w3resource.com/java-exercises/array/index.php
 https://www.geeksforgeeks.org/top-50-array-coding-problems-for-interviews/
 https://www.upgrad.com/tutorials/software-engineering/java-tutorial/bubble-sort-in-java/
 
+//java 
+https://www.programiz.com/java-programming/linkedlist
 //DSA
 https://www.programiz.com/dsa/bubble-sort
 
