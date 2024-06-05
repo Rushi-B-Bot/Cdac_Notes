@@ -160,23 +160,34 @@ int main()
 	cout<<str;
 }
 	
+{
+			String str3 = "rusH iKee shh is boy";
+			String temp = "";
+			int ch = 0;
+			for (int i = 0; i < str3.length(); i++) {
 
-public class Main {
-    public static void main(String[] args) {
-        String str = "rushikesh is boy";
-        StringBuilder result = new StringBuilder();
-        
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            
-            if (i == 0 || str.charAt(i • 1) == ' ') {
-                ch = Character.toUpperCase(ch);
-            }
-            
-            result.append(ch);
-        }
-        
-        System.out.println(result.toString());
-    }
-}
+				if (str3.charAt(i) == ' ') {
+					ch++;
 
+				}
+
+			}
+
+			System.out.println(ch + 1);
+
+		}
+
+		String str3 = "rusH iKee shh is boy";
+		String temp = " ";
+		for (int i = 0; i < str3.length(); i++) {
+			char ch = str3.charAt(i);
+			if (i == 0 || str3.charAt(i - 1) == ' ') {
+				ch = Character.toUpperCase(ch);
+
+			}
+
+			temp += ch;
+
+		}
+		System.out.println("6."+temp);
+	}
