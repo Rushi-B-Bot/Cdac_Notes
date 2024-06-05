@@ -1,4 +1,4 @@
-https://actsfeedback.cdac.in/feedbackSystem/
+nohttps://actsfeedback.cdac.in/feedbackSystem/
 Amount= pi*((pow((1 + rate / 100), time)));;
     {
     	
@@ -160,4 +160,23 @@ int main()
 	cout<<str;
 }
 	
+
+public class Main {
+    public static void main(String[] args) {
+        String str = "rushikesh is boy";
+        StringBuilder result = new StringBuilder();
+        
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            
+            if (i == 0 || str.charAt(i • 1) == ' ') {
+                ch = Character.toUpperCase(ch);
+            }
+            
+            result.append(ch);
+        }
+        
+        System.out.println(result.toString());
+    }
+}
 
