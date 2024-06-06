@@ -324,4 +324,63 @@ Adoption agencies will be able to manage profiles, review and process adoption a
 ==============================================================================================================================================================
 
 
+System Requirements Specification (SRS) - Child, Parent, and Pet Adoption System
+1. Introduction
+1.1 Purpose
+The purpose of this document is to define the requirements for the registration functionality of the Child, Parent, and Pet Adoption System.
+
+1.2 Scope
+This system aims to facilitate the registration process for individuals interested in adoption, whether as parents or pet owners. Additionally, it aims to provide both the client and customers with various benefits.
+
+2. Functional Requirements
+2.1 User Registration
+Users can register as either parents or pet owners.
+Required information:
+Full name
+Email address
+Contact number
+Address
+Preferred contact method (email/phone)
+Password
+2.2 Validation
+Ensure that email addresses and contact numbers are in the correct format.
+Implement password strength validation.
+2.3 Error Handling
+Display clear error messages for missing or invalid information.
+Allow users to correct errors without losing entered data.
+3. Non-functional Requirements
+3.1 Performance
+Registration forms should load quickly.
+System should handle multiple registration requests simultaneously.
+3.2 Usability
+Forms should be user-friendly and intuitive.
+Provide clear instructions for each field.
+3.3 Compatibility
+Ensure compatibility with major web browsers.
+Forms should be responsive across different devices.
+4. Client Profits
+4.1 Advertising Revenue
+Implement space for targeted advertising on the registration pages.
+Generate revenue through pay-per-click or pay-per-impression models.
+4.2 Premium Features
+Offer premium registration options with additional benefits for a fee.
+Examples include priority placement in adoption searches or access to exclusive adoption events.
+5. Customer Benefits
+5.1 Access to Adoption Opportunities
+Customers can easily register to explore adoption opportunities for children or pets.
+Streamlined registration process saves time and effort.
+5.2 Community Engagement
+Customers can connect with other adoptive parents or pet owners through the system's community features.
+Access to forums, events, and support networks enhances the adoption experience.
+6. Constraints
+Compliance with privacy regulations (e.g., GDPR, CCPA).
+Limited resources for development and maintenance.
+7. Assumptions
+Users have access to stable internet.
+Users are familiar with online registration processes.
+8. Dependencies
+Integration with database for storing registration information.
+Integration with authentication system for login functionality.
+
+
 
