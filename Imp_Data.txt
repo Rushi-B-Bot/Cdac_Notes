@@ -22,74 +22,19 @@ https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEY
 
 
 //inkend List
+https://workat.tech/problem-solving/practice
 https://www.naukri.com/code360/library/interview-questions-on-linked-list
-package com.demo.service;   
+https://www.geeksforgeeks.org/introduction-to-singly-linked-list/
+https://www.ideserve.co.in/learn/linked-list-interview-questions
+https://github.com/Devinterview-io/linked-list-data-structure-interview-questions
+https://www.prepbytes.com/blog/linked-list-interview-questions/
+https://www.geeksforgeeks.org/commonly-asked-data-structure-interview-questions-set-1/
+https://www.geeksforgeeks.org/top-20-linked-list-interview-question/
 
-import java.util.Scanner;
 
-public class Service {
-	
 
-	public static void ReveseString(String arr) {
 
-		String rev = " ";
-		char temp;
 
-		for (int i = arr.length() - 1; i >= 0; i--) {
-			char result = arr.charAt(i);
-			rev += result;
 
-		}
-
-		System.out.println(rev);
-
-	}
-	
-	
-
-	public static void ReveseArray(int arr[]) 
-	{
-		int l=arr.length;
-		int [] b=new int[l];
-		Scanner obj = new Scanner(System.in);
-		
-	    System.out.println("Enter the Array element :5");
-		for (int i = 0; i < arr.length; i++) 
-		{
-			arr[i] =obj. nextInt();
-		}
-		
-		for (int i = 0; i < arr.length; i++) 
-		{
-			b[l-1]=arr[i] ;
-			l--;
-		}
-		
-		System.out.println("Use Another array");
-		for (int i = 0; i < b.length; i++) 
-		{
-			  System.out.println(b[i]);
-		}
-		
-		
-		System.out.println("Use Swap with temp array");
-		int temp=0;
-		for (int i = 0; i < arr.length/2; i++) 
-		{
-			  temp=arr[i];
-			  arr[i]=arr[l-1-i];
-			  arr[l-1-i]=temp;
-		}
-		
-		for (int i = 0; i < arr.length; i++) 
-		{
-			System.out.println(arr[i]);
-		} 
-	  
-	  
-
-	}
-
-}
 
 
