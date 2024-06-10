@@ -1,0 +1,609 @@
+++++---------------------------------------
+
+Name of the array itself is a constant pointer pointing to base address of an array
+
+int a[5]={1,2,3,4,5};
+a[0]-->1--->int
+&a[0]-->100-->int*
+
+ADDRESS
+1)SUBSCRIPT NOTATION(&ARRAYNAME[INDEX])
+&a[0]-->100
+&a[1]-->104
+&a[4]-->116
+
+2)POINTER NOTATION (ARRAYNAME/POINTERNAME + INDEX)
+(a+0)-->100    (0+a)
+(a+1)-->104    (1+a)
+(a+2)--->108   (2+a)
+(a+3)-->112    (3+a)
+(a+4)-->116    (4+a)
+
+
+&a[0]==(a+0)==(0+a)==a---------->100
+&a[4]==(a+4)==(4+a)------------->116
+&a[i]==(a+i)==(i+a)------------------------->ADDRESS
+
+VALUE
+1)SUBSCRIPT NOTATION(ARRAYNAME[INDEX])
+a[0]-->1  0[a]
+a[1]-->2  1[a]
+a[4]-->5  4[a]
+
+2)POINTER NOTATION *(ARRAYNAME/POINTERNAME + INDEX)
+*(a+0)-->*100 --> 1      *(0+a)
+*(a+1)-->*104--->2       *(1+a)
+*(a+2)--->*108-->3       *(2+a)
+*(a+3)-->*112-->4       *(3+a)
+
+ 
+a[0]==0[a]==*(a+0)==*(0+a)==*a---------->1
+a[4]==*(a+4)==4[a]==*(4+a)------------->5
+a[i]==*(a+i)==*(i+a)==i[a]---------------->VALUE
+
+#include<stdio.h>
+int main()
+{
+	int a[5],i,sum=0;
+	float avg;
+	printf("enter elements\n");
+	for(i=0;i<=4;i++)
+	scanf("%d",(a+i));//&a[i]
+	for(i=0;i<=4;i++)
+	a[i]=*(a+i) *  *(i+a);
+	printf("display elements\n");
+	for(i=0;i<=4;i++)
+	printf("%d\t",i[a]);
+}
+c .w
+solve above program using pointer notation
+
+POINTER ARITHMETIC OPERATIONS
+The following operations allowed on pointer
+1)Incrementing a pointer
+2)decrementing a pointer
+3)adding integer to a pointer
+4)subtracting integer from a pointer
+
+#include<stdio.h>
+int main()
+{
+	int a[5]={1,2,3,4,5};
+	//a++;//a=a+1 //a=100+1 
+	int* b=a;//(a+0),(0+a),&a[0]
+	b++;//b=b+1 //b=100+1
+	printf("%d\n",*b);//2
+	b--;//b=b-1 //b=104-1 
+	printf("%d\n",*b);//1
+	b=b+3; //b=100+3 
+	printf("%d\n",*b);
+	b=b-3;//b=112-3 
+	printf("%d",*b);
+
+}
+
+5)comparison of two pointers
+#include<stdio.h>
+int main()
+{
+	int a[5]={1,2,3,4,5};
+	int* b=a+4;
+	int*c =&a[4];
+	if(b==c)
+	printf("both pointer pointing to same loc1\n");
+	if(a==b)
+	printf("both pointer pointing to same loc2\n");
+	if(*b==*c)
+	printf("both pointer containing same value1\n");
+	if(*b==*a+4)
+	printf("equal");
+	
+}
+
+
+6)Assigning one pointer into another pointer
+int a[5]={1,2,3};
+int*b=a;
+
+7)subtraction of two pointers
+#include<stdio.h>
+int main()
+{
+	int a[5]={1,2,3,4,5};
+	int* b=(a+4);
+	printf("%d",b-a);
+	//116-100
+	//16 bytes
+	//16/4-->4 no of elements
+	//how many elements b pointer is apart from a pointer
+
+}
+
+The following operations are not allowed on pointers
+1)division of two pointers
+2)multiplication of two pointers
+3)addition of two pointers
+4)multiplying pointer with constant ex (a*4)
+5)dividing pointer with constant ex (a/4)
+
+-----------------------------------------------
+#include<stdio.h>
+int main()
+{
+	int a[5]={1,2,3,4,5};
+	int *b=&a[1];
+	b++;
+	printf("%d%d",a[1],b[1]);
+}
+
+
+
+	
+
+
+===================================================
+
+
+==================================================================
+STRING
+when group of character is stored in an  array  ,such array is called as string
+in string ,'\0'(null character) is appended by compiler at the end
+
+ASCII value of '\0' is 0
+
+char a[5]="pune";
+
+if size of the string is N then max no of characters i can store in string is 
+N-1
+char a[4]="pune";//error
+char a[5]="pune";//allowed
+
+
+#include<stdio.h>
+int main()
+{
+	//name of the string itself is a
+	//contant pointer pointing to
+	//base address of an array
+	char a[5]={"pune"};
+	//a[0]-->p-->char
+	//&a[0]-->100-->char*
+	
+---------------------------------------------
+#include<stdio.h>
+int main()
+{
+	char a[5]={"pune"};
+	char* b=a;//100-->char*
+	a++;//error--->constant pointer
+	b++;//allowed-->nonconstant pointer
+	
+}
+
+#include<stdio.h>
+int main()
+{
+	char a[5]={"pune"};
+	char* b=a;//100-->char*
+	printf("%c",b[1]);//u
+	printf("%c",*(b+3)+1);//e+1-->f
+	printf("%d%c",3[b],b[3]);//101 e
+	printf("%c",*(a+2)+9/2);//n+4---->r
+}
+
+
+
+#include<stdio.h>
+int main()
+{
+	char a[5]={"pune"};
+	char* b=a;//(a+0),(0+a),&a[0]
+	b++;//b=101--->b[0]-->u   //b[1]=n
+	printf("%c",b[1]);//n
+}
+
+
+-----------------------------------------------------
+char a[5]={"pune"};
+char* b=a;
+
+a[0]==b[0]==*a==*b==*(a+0)==*(0+a)==*(0+b)==*(b+0)==0[a]==0[b]========>p
+a[2]==b[2]==*(a+2)==*(2+a)==*(2+b)==*(b+2)==2[a]==2[b]========>n
+
+&a[0]==&b[0]==a==b==(a+0)==(0+a)==(0+b)==(b+0)========>100
+&a[2]==&b[2]==(a+2)==(2+a)==(2+b)==(b+2)========>102
+
+----------------------------------------------------------------
+How to accept/display a word ?
+ans) by using %s 
+
+%s will accept or print only 1 word
+%s will terminate when space is encountered
+#include<stdio.h>
+int main()
+{
+	char a[15];
+	printf("accept a word from the user\n");//pune goa
+	scanf("%s",&a[0]);//(a+0),(0+a),a
+	printf("string is %s",&a[0]);//(a+0),(0+a),a
+   pune
+	
+}
+
+
+
+
+#include<stdio.h>
+int main()
+{
+	char a[5];
+	printf("accept a word from the user\n");//pune
+	scanf("%s",(a+0));// (0+a) ,a ,&a[0]
+	printf("%s\n",(a+0));//(a+0) (0+a) a ,&a[0]-->pune
+	printf("%s\n",(a+1));// (1+a) ,&a[1]--->une
+	printf("%s\n",(a+2));// (2+a) ,&a[2]-->ne
+	printf("%s\n",(a+3));// (3+a) ,&a[3]-->e
+	
+}
+
+
+
+#include<stdio.h>
+int main()
+{
+	char a[12]="hello world";
+	char* b= &a[3];//a=100  b=103
+	printf("%s\n",&a[2]);//llo world
+	printf("%sn",(a+3));//lo world
+	printf("%c\n",b[0]);//l
+	printf("%s\n",(b+1));//o world
+	printf("%s\n",(b+3));//world
+	printf("%s\n",&b[2]);// world
+	printf("%d\n",a[0]);//104
+	printf("%s\n",(a+1+1));//(a+2) //llo world
+	printf("%s\n",(a+9/2));//o world
+	
+}
+------------------------------------------
+q)how to accept/display a group of words including space?
+
+#include<stdio.h>
+int main()
+{
+	char a[20];
+	gets(a);//will accept multiword from user including space
+	puts(a);//will display multiword  including space
+	
+}
+
+
+gets() will terminate when enter key is encounter
+-----------------------------------------------------------------
+string handling functions
+All string handling functions are predefined functions
+All string handling functions are stored in string.h
+
+
+1)strlen()-->count the no of characters in a string excluding \0
+
+int strlen(stringname);
+//function declaration of strlen()
+int strlen(char*);
+int strlen(char[]);
+
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[10];//pointer notation -->char* == subscript notation char[]
+	int x;
+	printf("accept string\n");//pune\0
+	scanf("%s",a);
+	x=strlen(a);
+	printf("size of string is %d\n",sizeof(a));//10 bytes
+	printf("strlen of string is %d\n",x);//4
+    
+}
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[]="";
+	printf("size of string is %d\n",sizeof(a));//1
+	printf("strlen of string is %d\n",strlen(a));//0
+}
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[]="A";
+	printf("size of string is %d\n",sizeof(a));//2
+	printf("strlen of string is %d\n",strlen(a));//1
+   
+
+}
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[100]="A";
+	printf("size of string is %d\n",sizeof(a));//100
+	printf("strlen of string is %d\n",strlen(a));//1
+}
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[]="ABCD\0B\0C\0";
+	printf("size of string is %d\n",sizeof(a));//9
+	printf("strlen of string is %d\n",strlen(a));//4
+	printf("%s",a);//ABCD
+}
+
+
+
+imp**
+write a userdefined function to count length of the string without 
+using strlen()
+
+#include<stdio.h>
+int ustrlen(char*);
+int main()
+{
+	int len;
+	char a[10];//char*
+	printf("accept string\n");
+	scanf("%s", a);//HELLO
+	len=ustrlen(a);
+	printf("length=%d", len);
+}
+int ustrlen(char* b)
+{
+	int len = 0;
+	while (*b != '\0')
+	{
+		len++;
+		b++;
+	}
+	return len;
+}
+========================================================================
+
+#include<stdio.h>
+int ustrlen(char[]);
+int main()
+{
+	int len;
+	char a[10];//char*
+	printf("accept string\n");
+	scanf("%s", a);//HELLO
+	len=ustrlen(a);
+	printf("length=%d", len);
+}
+int ustrlen(char b[])
+{
+	int len = 0,i=0;
+	while (b[i] != '\0')
+	{
+		len++;
+	    i++;
+	}
+	return len;
+}
+
+===============================================
+------------------------------------------------------
+//strcpy()-->copy source string content into target string
+//strcpy(targetstring,source string);
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    
+	char a[5]="pune";
+	char b[5];
+	//b=a;//using assignment operator address is getting copied
+	strcpy(b,a);
+	printf("target string is %s",b);//pune
+}
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int len;
+	char a[13],b[13];
+	printf("accept string\n");
+	scanf("%s",a);//hi
+	strcpy(b,a);
+	printf("target string is %s",b);
+	
+}
+
+
+--------------------------------------------------------
+wap to copy 1 string into another w/o using strcpy()
+#include<stdio.h>
+void ustrcpy(char*,char*);
+int main()
+{
+	char a[5]="pune";
+	char b[5];
+	ustrcpy(b,a);
+	printf("target string is %s",b);//pune
+	
+}
+void ustrcpy(char* q,char* p )
+{
+	while(*p!='\0')
+	{
+		*q=*p;
+		p++;
+		q++;
+	}
+	*q='\0';
+}
+======================================================================
+-----------------------------------------------------------------
+
+strrev()-->reverses the string
+strrev(stringname);
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	
+	char a[6] = "hello";
+	strrev(a);
+	printf("%s", a);//olleh
+}
+======================================================
+write a program to display reverse string w/o using strrev()
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int y = 0;
+	char a[3] = "hi";
+	char c[3];
+	int x=strlen(a) - 1;//x=1
+	while (x>=0)
+	{
+		c[y]=a[x];
+		x--;//-1
+		y++;//2
+
+	}
+	c[y] = '\0';
+	printf("reverse string is %s", c);
+	
+}
+
+--------------------------------------------------------
+strcat-->concatenate source string at the end of target string
+strcat(targetstring,sourcestring);
+#include<stdio.h>
+int main()
+{
+	char str[] = "students";
+	char ttr[] = "hello";
+	strcat(ttr, str);//hellostudents\0
+	printf("concatenate string is %s", ttr);
+}
+
+wap to append 1 string into another string
+#include<stdio.h>
+void strcatu(char*,char[]);
+int main()
+{
+	char str[] = "hi";
+	char ttr[] = "bye";
+	strcatu(ttr, str);
+	printf("concatenate string is %s", ttr);
+}
+void strcatu(char* t,char* s)
+{
+	while(*t!='\0')
+	{
+		t++;
+	}
+	while(*s!='\0')
+	{
+		*t=*s;
+		t++;
+		s++;
+	}
+	*t='\0';
+}
+
+---------------------------------------------------------
+strcmp()
+int strcmp(string1,string2);
+compare two strings character by character and return 1,-1,0  on finding
+1st non matching character
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char a[] = "apple";
+	char b[] = "appy";
+	char c[] = "appam";
+	char d[] = "apple";
+	int x, y, z;
+	x = strcmp(a, b);
+	printf("%d", x);//-1
+	y = strcmp(a, c);
+	printf("%d", y);//1
+	z = strcmp(a, d);
+	printf("%d", z);//str1==str2 return 0
+}
+//a p p l e
+//a p p y
+
+//l <  y
+//str1 < str2
+//strcmp return -1
+
+
+//a p p l e
+//a p p a m
+//l > a
+//str1>str2
+//1
+=======================================================
+
+============================================
+
+//accept a string from the user and display whether the string is palindrom or not?
+//using string handling function
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char a[10],b[10];
+	printf("accept string");
+	scanf("%s", a);
+	strcpy(b, a);
+	strrev(a);
+	if (strcmp(a, b) == 0)
+		printf("palindrom");
+	else
+		printf("not palindrom");
+}
+
+
+
+ACCEPT 1 STATEMENT FROM THE USER AND DISPLAY NO OF CHARACTERS,NO OF VOWELS,
+NO OF SPACES,NO OF WORDS
+input-------------------> infotech null stop pune
+int main()
+{
+	int i, vowel = 0, space = 0, cnt = 0;
+	char a[25];
+	printf("accept multistring\n");
+	gets(a);//infotech null stop pune\0
+	for (i = 0;a[i] != '\0'; i++)
+	{
+		if (a[i] == 'a' || a[i] == 'e' || a[i] == 'i' || a[i] == 'o' || a[i] == 'u')
+			vowel++;
+		if (a[i] == 32) //' '
+			space++;
+		
+		cnt++;
+	}
+	printf("no of vowels=%d\n", vowel);
+	printf("no of characters=%d\n", cnt);
+	printf("no of words=%d\n", space + 1);
+	printf("no of space=%d\n", space);
+}

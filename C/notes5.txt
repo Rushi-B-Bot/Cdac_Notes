@@ -1,0 +1,572 @@
+--------------------------------------------------------------------
+
+Structure
+
+1)structure is a collection of heterogenous datatype in which
+elements can be stored in a contignous manner
+
+//declaration of structure
+struct Student
+{
+	//members of the structure
+	int rollno;
+	char name[10];
+	char grade;
+};
+
+
+2)during declaration of structure,memory is not allocated to the members
+of the structure.
+
+3)memory is allocated at the time of creation of structure variable
+
+int a;
+
+//syntax for creation of structure variable
+struct structure_name structure_variablename;
+struct employee  a;//memory gets allocated for members of the structure
+
+how many bytes?
+summation of  datatypes of all members of the structure
+	struct employee e1;
+	//type of structurevariable e1 is struct structurename
+	printf("%d",sizeof(e1));//15 bytes
+	printf("%d",sizeof(struct employee));//15 bytes
+
+
+//sizeof(e1)==sizeof(struct employee)
+=======================================================================
+
+int a[5];
+int a;
+char a[5];
+int a[3][2];
+//declaration of structure
+struct employee
+{
+	int id;//members of structure
+	float sal;
+	char name[10];
+};
+
+struct book
+{
+	int bid;
+	char authorname[10];
+	float price;
+};
+
+=====================================================
+During declaration of structure, memory for members of the structure is not allocated therefore
+we cannot initlialize members of the structure during declaration
+#include<stdio.h>
+struct employee
+{
+	int id=1;//members of structure
+	float sal;
+	char name[10];
+};
+int main()
+{
+	
+}
+//error
+====================================================================
+
+
+
+rules
+structurevariable .
+pointer->
+use of & in scanf() in structure is mandatory
+[].
+()->
+
+wap to store record of 1 emp inside structure
+
+#include<stdio.h>
+struct employee
+{
+	int id;
+	float sal;
+	char name[10];
+};
+int main()
+{
+	struct employee e1,e2={102,60000.00,"rohan"},e3;
+	printf("accept data for employee no e1\n");
+	scanf("%d%f%s",&e1.id,&e1.sal,&e1.name);
+	printf("%d %f %s\n",e1.id,e1.sal,e1.name);
+	e3=e2;//entire structure get copied into another structure
+	//only if both structure variable should be of same type
+	printf("%d %f %s",e3.id,e3.sal,e3.name);
+	
+	
+}
+
+Array of structure
+To hold number of records of same type,array of structure is used.
+
+#include<stdio.h>
+struct employee
+{
+	int id;
+	float sal;
+};
+int main()
+{
+	int a[3];//a is an array containing 3 elements of type integer
+	struct employee e[3];//e is an array containing 3 structure of type employee
+	int i;
+	printf("accept details\n");
+	for (i = 0; i <= 2; i++)
+	{
+		scanf("%d%f", &e[i].id, &e[i].sal);
+	}
+	printf("display details\n");
+	for (i = 0; i <= 2; i++)
+	{
+		printf("%d %f\n", e[i].id, e[i].sal);
+	}
+	//printf("%d", sizeof(e));//24 bytes
+	//printf("%d", sizeof(e[0]));//8 bytes
+	
+}
+==============================================================
+we cannot declare function inside structure declaration
+#include<stdio.h>
+struct employee
+{
+	int id;
+	float sal;
+	void accept();//error
+};
+int main()
+{
+}
+
+===================================================================
+
+static 
+keyword is static
+1)The variable declared with static keyword is called as static variable
+2)static variable can be declared globally as well as locally
+3)initial value is 0
+4)stored on datasection
+
+#include <stdio.h>
+static int y;//global static variable
+void main()
+{
+    static int x;//local static variable
+	printf("%d %d",x,y);
+	show();
+	
+}
+void show()
+{
+	printf("%d %d",x,y);//x is not accessible(local)
+}
+//scope of x variable is within the block /within the function
+//scope of y variable is thru out the program
+//lifetime of static variable x,y is thru out the program
+
+imp******
+Difference between local variable and static variable
+local variable
+1)the variable declared within the paraenthesis of a function or a block is called as local variable
+2)stored on stack section
+3)inital value is garbage
+4)lifetime is within the block/within the function
+
+
+
+
+5)
+#include <stdio.h>
+void show();
+void main()
+{
+   
+	show();
+	show();
+	show();
+}
+void show()
+{
+	int x=0;
+	printf("%d\t",x);//000
+	x++;//1
+}
+whenever function is called,new memory is always created for local varaible
+6)whenever function is called,local variable is reinitialized
+
+static variable
+1)The variable declared with static keyword is called as static variable.
+2)stored on data section
+3)inital value is zero
+4)lifetime is through out the program
+5)
+#include <stdio.h>
+void show();
+void main()
+{
+   
+	show();
+	show();
+	show();
+}
+void show()
+{
+	static int x;
+	printf("%d\t",x);//012
+	x++;//3
+}
+whenever function is called,new memory is not created for static varaible
+6)whenever function is called,static variable is not reinitialized
+
+
+-----------------------------
+#include <stdio.h>
+static int y=10;//global static variable
+void main()
+{
+    static int y=20;//local static variable
+	printf("%d",y);//20
+}
+//local variable is having high priority over global variable
+-----------------------------------------------------
+====================================================
+
+Dynamic memory allocation
+memory allocated at compile time leads to either memory wastage or memory required.
+for proper memory management go 4 DMA.
+DMA allows us to allocate memory dynamically(runtime) on heap section
+for allocating memory dynamically two functions should be used
+1)malloc()
+2)calloc()
+
+declared in stdlib.h
+
+void pointer-->void*
+void pointer is a generic pointer which can store or can return the
+address of any type of variable.
+#include<stdio.h>
+int main()
+{
+	float a=10;
+	void* b=&a;//1000 
+}
+
+
+printf("%d",sizeof(void*));//4 bytes on 32 bit and 8 bytes on 64 bits
+
+****void is a return type and void * is a datatype.
+
+#include<stdio.h>
+int main()
+{
+        show();
+        
+}
+void* show()//show() can return the address of any  type of variable
+{
+        int a=10;
+        return &a;
+}
+
+malloc()
+malloc() is used to allocate memory dynamically on heap section..
+syntax..
+
+datatype * pointername=void* malloc(n * sizeof(datatype));
+
+n-->no of elements to be accepted at runtime
+
+   		     =void* malloc(5 * sizeof(int));
+        int* ptr     =(int*) malloc(20);
+        	     =return base address of an array-->100-->int*
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+        int* ptr;
+        int n,i;
+        printf("enter no of elements\n");
+        scanf("%d",&n);
+        ptr=(int*) malloc(n*sizeof(int));
+        printf("accept elements\n");
+        for(i=0;i<n;i++)
+        scanf("%d",&ptr[i]);//(ptr+i),(i+ptr)
+        printf("display elements\n");
+        for(i=0;i<n;i++)
+        printf("%d\t",ptr[i]);//*(ptr+i)
+        free(ptr);//to deallocate the memory on heap section which is allocated by malloc/calloc()
+}
+
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+        char* ptr;
+        int n,i;
+        printf("enter no of characters in ur name\n");
+        scanf("%d",&n);//4
+        ptr=(char*) malloc((n*sizeof(char))+1);
+        printf("accept name\n");
+        scanf("%s",&ptr[0]);//(ptr+0),(0+ptr) neha\0
+        printf("display name\n");
+        printf("%s",&ptr[0]);//(ptr+0),(0+ptr)
+        free(ptr);//to deallocate the memory
+ 
+}
+========================================================
+2D ARRAY
+//name of 2d array itself is a constant pointer pointing to
+//base address of an array
+
+syntax:
+datatype arrayname[row][col];
+
+int a[3][3]={1,2,3,4,5,6,7,8,9};
+//no of elements=row*col-->3*3-->9 elements
+printf("%d",sizeof(a));//9*4-->36 bytes
+printf("%d",sizeof(a[0][0]));//4 bytes
+
+
+ADDRESS
+1)SUBSCRIPT NOTATION(&arrayname[row][col]);
+
+&a[0][0]-->100
+&a[0][1]-->104
+&a[1][1]-->116
+&a[2][2]--->132
+
+
+2)POINTER NOTATION --->*(arrayname/pointername +row)+col;
+*(a+0)+0-->100
+*(a+0)+1-->104
+*(a+1)+0 -->112
+*(a+1)+1 --->116
+*(a+2)+2-->132
+
+&a[0][0]===*(a+0)+0 ------------->100
+&a[1][2]===*(a+1)+2 ------------->120
+&a[i][j]===*(a+i)+j-------------->address
+
+VALUE
+1)SUBSCRIPT NOTATION(arrayname[row][col]);
+
+a[0][0]-->1
+a[0][1]-->2
+a[1][1]-->5
+a[2][2]--->9
+
+
+2)POINTER NOTATION --->*(*(arrayname/pointername +row)+col);
+*(*(a+0)+0)-->*100-->1
+
+*(*(a+0)+1)-->*104-->2
+
+*(*(a+2)+2)-->*132-->9
+
+
+a[0][0]===*(*(a+0)+0) ------------->1
+a[i][j]===*(*(a+i)+j)-------------->value
+
+
+why 2d array?
+50 students 
+5 marks each
+
+1)250 variable
+
+2)create one dimesional array that can store 250 marks
+
+3)create 50 one dimensional array that can store 5 marks of each student 
+
+
+feasible solution is 2darray
+int marks[50][5];
+
+
+
+various ways of declaring and initilizing 2d array
+	int a[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
+	//123
+	//456
+	//789
+
+	int a[3][3]= { {1,2},{4,5},{7} };
+	//120
+	//450
+	//700
+	//partial initilization of an array
+
+
+	int a[3][3] = { 1,2,4,5,7 };
+	//124
+	//570
+	//000
+
+	
+	int a[][2] = { 1,2,3,4,5 };
+	//12
+	//34
+	//50
+
+	int a[3][] = { 1,2,3,4,5,6 };//error 
+in 2d array col size is mandatory
+
+------------------------------------------------------------
+#include<stdio.h>
+int main(){
+	int a[3][3];int i, j;
+	printf("enter elements\n");
+	for(i=0;i<=2;i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			scanf("%d", *(a + i) + j);//&a[i][j]
+		}
+	}
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			a[i][j] = *(*(a+i)+j) * a[i][j];
+		}
+	}
+	printf("display elements\n");
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			printf("%d\t", *(*(a + i) + j));//a[i][j]
+		}
+		printf("\n");
+	}
+}
+
+//wap to store temperature of 2 cities of a week and display the temperature
+#include<stdio.h>int main()
+{
+	int temperature[2][7];
+	int i, j;
+	for(i = 0; i <= 1; i++)
+	{
+		for (j = 0; j <= 6; j++)
+		{
+			printf("city = %d , Day = %d\n", i + 1, j + 1);
+			scanf("%d", &temperature[i][j]);//*(temperature+i)+j
+		}}
+	for (i = 0; i <= 1; i++)
+	{
+		for (j = 0; j <= 6; j++)
+		{
+			printf("city = %d , Day = %d = %d\n", i + 1, j + 1,temperature[i][j]);      //*(*(temperature+i)+j)
+			
+		}
+		printf("\n*****************************************\n");
+	}}
+
+wap to add 2 matrix and store the result in another matrix
+#include<stdio.h>
+int main(){
+	int a[3][3],b[3][3]={1,1,1,1,1,1}, i, j,c[3][3];
+	printf("enter elements\n");
+	for(i=0;i<=2;i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			scanf("%d", *(a + i) + j);//&a[i][j]
+		}
+	}
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			c[i][j] = *(*(a+i)+j) + b[i][j];
+		}
+	}printf("display elements\n");
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			printf("%d\t", *(*(c + i) + j));//c[i][j]
+		}
+		printf("\n");
+	}
+}
+
+c.w
+
+wap to accept elements of matrix 3*3 and display average of all elements of array plus
+count no of elements present in 2d array
+#include<stdio.h>int main(){
+	int a[3][3] ,i, j,sum=0,counter=0;
+	float avg;
+	printf("enter elements\n");
+
+	for(i=0;i<=2;i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			scanf("%d", *(a + i) + j);//&a[i][j]
+			counter++;
+		}}
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			sum=sum+a[i][j];
+		}
+	}
+	avg=(float)sum/9;
+	printf("average=%f\n",avg);
+	printf("no of elements=%d",counter);
+}
+
+
+
+wap to accept elements of matrix 3*3 and display max element in 2d array
+#include<stdio.h>
+	int main(){
+	int a[3][3] ,i, j,max;
+	printf("enter elements\n");
+	for(i=0;i<=2;i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			scanf("%d", *(*(a + i) + j);//&a[i][j]
+			
+		}}
+		max=*(*(a+0)+0);
+	for (i = 0; i <= 2; i++)
+	{
+		for (j = 0; j <= 2; j++)
+		{
+			if(max<a[i][j])
+			{
+				max=a[i][j];
+			}
+		}
+	}
+	printf("maximum element=%d",max);
+}
+
+
+c.w
+wap to accept elements of matrix 3*3 and display min element in 2d array
+using only pointer notation
+
+
+
+
+
+
+
+

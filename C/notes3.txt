@@ -1,0 +1,704 @@
+Function
+==>function is a block of statements which does some predefined task,i.e some predefined task is assigned to the function and 
+whenever the function is called,the function has to performed predefined task.
+==>A function in C is a set of statements that when called perform some specific task. It is the basic building block of a C 
+program that provides modularity and code reusability.
+
+adv
+1)By using functions, we can avoid rewriting same logic/code again and again in a program.
+2)We can call C functions any number of times in a program and from any place in a program.
+3)Reusability is the main achievement of C functions.
+4)readability increases
+5)modularity can be achieved
+
+Types of Functions
+There are two types of functions in C programming:
+
+Library Functions/predefined function:
+==>function whose functionality is already predefined and as a user you cannot change functionality of that function .
+==>The predefined functions declared in the C header files such as scanf(), printf()..
+==>we need to include headerfile in our program.
+
+User-defined functions: 
+==>function whose functionality is given by programmer
+
+Function Aspects
+There are three aspects of a C function.
+
+Function declaration: It tells the compiler about the function name, function signature(no of arguments,sequence of argument,
+datatype of argument), and return type.
+
+Function call: Function can be called from anywhere in the program. The parameter list must not differ in function calling an
+d function declaration. 
+
+Function definition It contains the actual statements which are to be executed. It is a block of statements where the task/lo
+gic of the function is implemented.
+
+C function aspects	Syntax
+1	Function declaration		return_type function_name (argument list);
+2	Function call--------->	function_name (argument_list);
+3	Function definition	return_type function_name (argument list) {function body;}
+
+========================================================================
+int main()
+{
+	int a,b,c,d;
+	printf("accept inputs\n");
+	int res=scanf("%d%d%d%d",&a,&b,&c,&d);
+	printf("no of inputs accepted is %d",res);
+}
+
+
+
+Different aspects of function calling
+
+A function may or may not accept any argument. It may or may not return any value. Based on these facts, There are four different aspects of function calls.
+
+function without arguments and without return value
+function without arguments and with return value
+function with arguments and without return value
+function with arguments and with return value
+
+=====================================================================
+===========
+case 1 :  
+function with arguments and without return value
+
+#include<stdio.h>
+//returntype functionname(datatypes);//function declaration/prototype
+void add(int,int);
+int main()
+{
+	int a, b;
+	printf("enter value of a and b\n");
+	scanf("%d%d", &a, &b);
+	add(a, b);//function calling
+	printf("\nend of main");	
+}
+/* returntype functionname(datatype argumentname)
+{
+}*/
+void add(int p, int q)//function defination
+{
+	int r = p + q;
+	printf("result=%d", r);
+	
+}
+
+=====================================================================
+
+case 2 :  function with arguments and with return value
+#include<stdio.h>
+int add(int,int);
+int main()
+{
+	int a,b,r;
+	printf("enter value of a and b\n");
+	scanf("%d%d",&a,&b);
+	r=add(a,b);//function calling
+	printf("result=%d",r);
+	printf("\nend of main()");
+}
+int add(int a, int b)//function definition
+{
+	int r=a+b;
+	return r;
+}
+
+
+case 3 :  function without arguments and with return value
+
+#include<stdio.h>
+int add();
+int main()
+{	
+printf("result=%d",add();//function calling
+		printf("\nend of main()");
+}
+int add(void)//function defination
+{
+	int p,q,r;
+	printf("enter value of p and q\n");
+	scanf("%d%d",&p,&q);
+	r=p+q;
+	return r;
+}
+
+case 4 :  function without arguments and without return value
+
+#include<stdio.h>
+void add();
+int main()
+{	
+	add();//function calling
+}
+void add()//function defination
+{
+	int p,q,r;
+	printf("enter value of p and q\n");
+	scanf("%d%d",&p,&q);
+	r=p+q;
+	printf("result=%d",r);
+}
+
+-----------------------------------------------------------------------------------------
+case 1 :  function with arguments and without return value
+
+#include<stdio.h>
+void area_c(int);
+int main()
+{
+	int radius;
+	printf("enter radius\n");
+	scanf("%d", &radius);
+	area_c(radius);
+
+}
+void area_c(int r)
+{
+	float area = 3.142f * r * r;
+	printf("area of circle=%f", area);
+}
+
+
+case 2 :  function with arguments and with return value
+
+#include<stdio.h>
+float area_c(int);
+int main()
+{
+	int radius;
+	float area;
+	printf("enter radius\n");
+	scanf("%d", &radius);
+	area=area_c(radius);
+	printf("area=%f", area);
+}
+float area_c(int r)
+{
+	float area = 3.142f * r * r;
+	return area;
+}
+
+case 3 :  function without arguments and with return value
+
+
+#include<stdio.h>
+float area_c();
+int main()
+{
+	float area=area_c();
+	printf("area=%f", area);
+}
+float area_c()
+{
+	int r;
+	printf("enter radius\n");
+	scanf("%d", &r);
+	float area = 3.142f * r * r;
+	return area;
+}
+
+case 4 :  function without arguments and without return value
+#include<stdio.h>
+void area_c();
+int main()
+{
+	area_c();
+	
+}
+void area_c(void)
+{
+	int r;
+	printf("enter radius\n");
+	scanf("%d", &r);
+	float area = 3.142f * r * r;
+	printf("area=%f", area);
+}
+==================================================================
+
+#include <stdio.h>
+int show();
+int main()
+{   
+		int x= show();
+		printf("%d",x);
+
+}
+int show()
+{
+	return 100;
+}
+------------------------------------------------------
+
+#include <stdio.h>
+int show();
+int main()//calling function
+{   
+		printf("%d", show());
+
+}
+int show()//called function
+{
+	return 10 ;//control+value is return
+	printf("hello");
+}
+
+//the statments after return will never get executed
+//output-->10
+--------------------------------------------------------
+#include <stdio.h>
+int show();
+int main()//calling function
+{   
+		printf("%d", show());
+
+
+}
+int show()//called function
+{
+	return 10,20;
+}
+//only 1 value can be returned from called function to the calling
+//in function,value will be stored on stack section which works in LIFO manner
+thats why 20 will be returned to the calling function 
+-------------------------------------------------------------------
+
+
+
+#include <stdio.h>
+//wap to print whether the number is even or odd by returning value 1 and 0 respectively
+#include<stdio.h>
+int show(int);
+int main()//calling function
+{ 
+	int number;
+	printf("enter number\n");
+	scanf("%d",&number);
+	int x=show(number);
+	(x==1)?printf("even"):printf("odd");
+	
+}
+int show(int num)
+{
+return	(num%2==0)?  1: 0;
+}
+
+-------------------------------------------------------
+Call by value in C
+In call by value method, the value of the actual parameters is copied into the formal parameters. In other words, In call by value, different memory is allocated for actual and formal parameters since the value of the actual parameter is copied into the formal parameter.
+The actual parameter is the argument which is used in the function call whereas formal parameter is the argument which is used in the function definition.
+
+Limitations of pass by value
+
+1)changes made to the actual argument doesnot reflect on formal argument and viceversa
+#include <stdio.h>
+void swap(int,int);
+void main()
+{
+	int a=10,b=20;
+	printf("before calling swap()\n");
+	printf("value of a and b is %d %d\n",a,b);
+	swap(a,b);//actual argument	
+	printf("after calling swap()\n");
+	printf("value of a and b is %d %d\n",a,b);
+}
+void swap(int p,int q)//formal argument
+{
+	int temp;
+	temp=p;
+	p=q;
+	q=temp;
+	printf("after swapping\n");
+	printf("value of p and q is %d %d\n",p,q);
+	return p,q;
+	
+}
+
+2)only 1 value can be returned from called function to the calling fun
+
+To remove limitations of pass by value,pass by address is used..
+
+Call by address in C
+In call by address, the address of the variable is passed into the function call as the actual parameter.
+The value of the actual parameters can be modified by changing the formal parameters since the address of the actual parameters is passed.
+In call by address, the memory allocation is similar for both formal parameters and actual parameters. All the operations in the function are performed on the value stored at the address of the actual parameters, and the modified value gets stored at the same address.
+
+Difference between call by value and call by address in c
+
+1	A copy of the value is passed into the function.
+	An address of variable is passed into the function
+2	Changes made inside the function is limited to the function only. The values of the actual parameters do not change by changing the formal parameters.	
+Changes made inside the function validate outside of the function also. The values of the actual parameters do change by changing the formal parameters.
+3	Actual and formal arguments are created at the different memory location	
+Actual and formal arguments are created at the same memory location
+
+---------------------------------------------------------
+Pass by address
+
+#include <stdio.h>
+void swap(int*,int*);
+void main()
+{
+	int a=10,b=20;
+	printf("before swapping\n");
+	printf("value of a and b is %d %d\n",a,b);
+	swap(&a,&b);	
+	printf("after swapping\n");
+	printf("value of a and b is %d %d\n",a,b);
+}
+void swap(int* p,int* q)
+{
+	int temp;
+	temp=*p;
+	*p=*q;
+	*q=temp;
+	printf("after swapping\n");
+	printf("value of *p and *q is %d %d\n",*p,*q);
+}
+---------------------------------------------
+#include <stdio.h>
+void square(int);
+void main()
+{
+	int a=10;
+	square(a);
+	printf("square value of a is %d",a);
+}
+void square(int p)
+{
+	
+	p=p*p;
+
+	
+}
+======================================
+#include <stdio.h>
+void square(int*);
+void main()
+{
+	int a=10;
+	square(&a);
+	printf("square value of a is %d",a);
+}
+void square(int* p)
+{
+	*p=*p * *p;
+	
+}
+---------------------------
+#include<stdio.h>
+void area_r(int len,int bre,int * a);
+void  peri_r(int len,int bre,int * p);
+
+int main()
+{
+	int len=3,bre=3;
+	int area,peri;
+	 area_r(len,bre,&area);
+	printf("area of rec is %d",area);
+	 peri_r(len,bre,&peri);
+	printf("perimeter of rec is %d",peri);
+}
+void area_r(int len,int bre,int * a)
+{
+	*a=len*bre;
+}
+void  peri_r(int len,int bre,int * p)
+{
+	*p=2*(len+bre);
+}
+
+POINTERS
+
+1)pointer is a variable which stores the address of another variable.
+2)size of every type of pointer on 16 bit is 2 bytes and on 32 bit is 4 bytes and
+on 64 bit is 8 bytes..
+3)type of pointer and type of variable should be same.
+4)dereferncing operator(*) return the value of a variable pointed by pointer
+
+1)
+int x=10;
+x-->10-->int
+&x-->1000--->int*
+
+char y='A';
+y-->A-->char
+&y-->2000--->char*
+
+double num=1.1;
+num-->1.1--->double
+&num--->3000--->double*
+
+2)
+int num;//declaration of a variable in which value is stored
+int* num;////declaration of a pointer variable in which address is stored
+
+int ptr;////declaration of a variable in which value is stored
+int * ptr; //declaration of a pointer variable in which address is stored
+
+-----------------------------------------------------------------------------
+Integer Pointer
+--------------
+int a=10;
+//a--->10-->int
+//&a-->1000-->int*
+int* b =  &a;//1000-->int*
+
+OR
+int a=10; 
+int * b;
+b=&a;
+
+
+a=10   ------->
+&a=1000------->
+b=1000------>
+&b=2000-------
+*b=10-->dereferencing operator/indirection operator-->
+return the value of a variable pointed by pointer
+
+
+a==*b==10
+*b=5;
+a=? //a=5
+
+a=123
+*b=? //*b=123
+
+&a==b==1000
+----------------------------------------------------------------
+Character Pointer
+--------------
+char a='x';
+//a--->x-->char
+//&a-->1000-->char*
+char* b=&a;//1000-->char*
+
+a=x ------->
+&a=1000----->
+b=1000---->
+&b=2000-->
+*b=x-->dereferencing operator-->return the value of a variable pointed by pointer
+
+
+a==*b==X
+&a==b==1000
+
+
+========================================================================================
+Pointer to Pointer
+A pointer to pointer is a variable use to store the address of another pointer. Such pointer is known as a double pointer (pointer to pointer). The first pointer is used to store the address of a variable whereas the second pointer is used to store the address of the first pointer. 
+#include<stdio.h>  
+void main ()  
+{  
+    int a = 10;  
+    int *p;  
+    int **pp;   
+    p = &a; // pointer p is pointing to the address of a  
+    pp = &p; // pointer pp is a double pointer pointing to the address of pointer p  
+    printf("address of a: %d\n",p); // Address of a will be printed   
+    printf("value stored at p: %d\n",*p); // value stored at the address contained by p i.e. 10 will be printed  
+    printf("value stored at pp: %d\n",**pp); // value stored at the address contained by the pointer stored at pp  
+}  
+===========================================================================
+Array
+Array is a finite(countable) set of homogenous elements in which the elements are stored in a contignous/linear manner.
+
+Syntax for declaration of an array:
+datatype arrayname[size];
+int a[5];//a is an array allocating memory for 5 integer elements
+
+different ways of declaring and initilizing 1d(linear/1row-many col) array
+1)
+int marks[5];
+printf("%d",sizeof(marks));//20 bytes
+printf("%d",sizeof(marks[0]));//4 bytes
+
+2)
+int a[5]={1,2,3,4,5};
+printf("%d",sizeof(a));//5*4=20 bytes
+if size of array is N then array index will go till N-1
+printf("%d",a[0]);//1
+printf("%d",&a[0]);//100
+
+3)
+const int a[5]={1,2,3,4,30};
+int x=a[0]*5;//x=5-->allowed
+a[0]=10;//error
+
+4)
+int a[5]={1,2};//partial initilization of an array
+printf("%d %d %d",a[2],a[3],a[4]);//000
+
+5)	int b[]={1,3,6,8};
+	//16 bytes memory allocation will takes place
+	//1 3 6 8
+
+6)
+	int size=5
+	int a[size];
+	//error
+
+7) int a[4]={1,67,34,55,33};//error
+----------------------------------------------------------------------------------------
+#include<stdio.h>
+int main()
+{
+	int a[5],i;
+	printf("enter elements\n");
+	for(i=0;i<=4;i++)
+	scanf("%d",&a[i]);
+	for(i=0;i<=4;i++)
+	a[i]=a[i]*a[i];
+	printf("display elements\n");
+	for(i=0;i<=4;i++)
+	printf("%d\t",a[i]);
+}
+
+#include<stdio.h>
+//accept 5 elements
+//summation of 5 elements
+//display average
+int main()
+{
+	int a[5],i,sum=0;
+	float avg;
+	printf("enter elements\n");
+ 	for(i=0;i<=4;i++)
+	scanf("%d",&a[i]);
+
+	for(i=0;i<=4;i++)
+	sum=sum + a[i];
+
+	avg=(float)sum/5;
+	printf("average=%f",avg);
+}
+
+progno 3
+wap to copy the elements of one array into another array
+//declare 2 array
+//accept elements for 1 array
+//copy
+//display the copied elements
+
+#include<stdio.h>
+int main()
+{
+	int m[5]={1,2,3,4,5};
+	int i,a[5];
+	for(i=0;i<5;i++)
+	a[i]=m[i];
+	printf("display elements\n");
+	for(i=0;i<=4;i++)
+	printf("%d\t",a[i]);
+	
+}
+
+progno 4
+wap to display maximum number in an array
+#include<stdio.h>
+int main()
+{
+    int a[5],i,max;
+    printf("Enter elements in array : ");
+    for(i=0; i<5; i++)
+    {
+        scanf("%d",&a[i]);
+    }//23 4 61 6 7
+
+
+	 max=a[0];
+    for(i=1; i<5; i++)
+    {         
+        if(a[i]>max)
+        max=a[i];
+    }
+   	printf("max of array is : %d",max);
+	 
+}
+
+prog 5
+wap to display minimum number in an array
+
+
+h.w
+accept elements of the array and store all the even numbers in the
+second array
+ 2 3 4 5 6 7
+#include<stdio.h>
+int main()
+{
+	int a[6],i,b[6],j;
+	printf("enter elements\n");
+	for(i=0;i<=5;i++)
+	scanf("%d",&a[i]);//2 3 4 5 6 7
+	for(i=0,j=0;i<=5;i++,j++)
+	{
+		if(a[i]%2==0)
+		{
+			b[j]=a[i];
+			printf("%d\t",b[j]);
+		}
+	}
+
+}
+---------------------------------------
+
+Name of the array itself is a constant pointer pointing to base address of an array
+
+int a[5]={1,2,3,4,5};
+a[0]-->1--->int
+&a[0]-->100-->int*
+
+ADDRESS
+1)SUBSCRIPT NOTATION(&ARRAYNAME[INDEX])
+&a[0]-->100
+&a[1]-->104
+&a[4]-->116
+
+2)POINTER NOTATION (ARRAYNAME/POINTERNAME + INDEX)
+(a+0)-->100    (0+a)
+(a+1)-->104    (1+a)
+(a+2)--->108   (2+a)
+(a+3)-->112    (3+a)
+(a+4)-->116    (4+a)
+
+
+&a[0]==(a+0)==(0+a)==a---------->100
+&a[4]==(a+4)==(4+a)------------->116
+&a[i]==(a+i)==(i+a)------------------------->ADDRESS
+
+VALUE
+1)SUBSCRIPT NOTATION(ARRAYNAME[INDEX])
+a[0]-->1  0[a]
+a[1]-->2  1[a]
+a[4]-->5  4[a]
+
+2)POINTER NOTATION *(ARRAYNAME/POINTERNAME + INDEX)
+*(a+0)-->*100 --> 1      *(0+a)
+*(a+1)-->*104--->2       *(1+a)
+*(a+2)--->*108-->3       *(2+a)
+*(a+3)-->*112-->4       *(3+a)
+
+ 
+a[0]==0[a]==*(a+0)==*(0+a)==*a---------->1
+a[4]==*(a+4)==4[a]==*(4+a)------------->5
+a[i]==*(a+i)==*(i+a)==i[a]---------------->VALUE
+
+#include<stdio.h>
+int main()
+{
+	int a[5],i,sum=0;
+	float avg;
+	printf("enter elements\n");
+	for(i=0;i<=4;i++)
+	scanf("%d",(a+i));//&a[i]
+	for(i=0;i<=4;i++)
+	a[i]=*(a+i) *  *(i+a);
+	printf("display elements\n");
+	for(i=0;i<=4;i++)
+	printf("%d\t",i[a]);
+}
+c .w
+solve above program using pointer notation
