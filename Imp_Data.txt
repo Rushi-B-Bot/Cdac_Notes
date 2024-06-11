@@ -1,20 +1,7 @@
-//Array
-https://www.tutorjoes.in/java_programming_tutorial/array_exercise_programs_in_java
-https://www.geeksforgeeks.org/java-array-programs/
-https://www.geeksforgeeks.org/top-50-array-coding-problems-for-interviews/
-https://www.upgrad.com/tutorials/software-engineering/java-tutorial/bubble-sort-in-java/
-https://www.naukri.com/code360/problem-lists/top-string-coding-interview-questions
-https://workat.tech/problem-solving/topics/string-and-tries/practice
 
 //DSA
 https://www.youtube.com/watch?v=7m1DMYAbdiY&list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop&index=30
 
-c++  String Logic 
-https://www.w3resource.com/cpp-exercises/array/index.php
-https://www.tutorjoes.in/java_programming_tutorial/string_exercise_programs_in_java
-https://dotnettutorials.net/lesson/manipulators-in-cpp/
-https://www.geeksforgeeks.org/top-50-string-coding-problems-for-interviews/
-https://www.geeksforgeeks.org/java-array-programs/
 
 //spring
 https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEYQsR    //React, Spring Boot, MySql project
