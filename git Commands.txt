@@ -2,4 +2,16 @@ nohttps://actsfeedback.cdac.in/feedbackSystem/
 Amount= pi*((pow((1 + rate / 100), time)));;
   
 
-I created a Netflix clone using React.js and Tailwind CSS to demonstrate frontend expertise. Created a user-friendly interface similar to Netflix, with responsive design and dynamic content rendering.This project provided me with actual experience developing scalable and interactive web apps.Increasing my grasp of Tailwind CSS and React.js.
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.18</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.18</version>
+		</dependency>
