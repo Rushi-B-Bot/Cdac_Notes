@@ -1,7 +1,7 @@
 nohttps://actsfeedback.cdac.in/feedbackSystem/
 Amount= pi*((pow((1 + rate / 100), time)));;
   
-
+//Web.XML 
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -15,11 +15,9 @@ Amount= pi*((pow((1 + rate / 100), time)));;
 			<artifactId>spring-context</artifactId>
 			<version>5.3.18</version>
 		</dependency>
+
+//config.XML 
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -29,16 +27,15 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
-</beans>
-	
-	<bean id="..." class="...">
-	
-	</bean>
-	
-	<bean id="..." class="...">
-		
+	<!-- 1st Bean -->
+	<bean class="com.demo.beans.Student_Data" name="Student_Data1">
+		<property name="studentId" value="99" />
+
 	</bean>
 
 </beans>
-ApplicationContext context =
-new ClassPathXmlApplicationContext(new String[] {"services.xml", "daos.xml"});
+
+//Main Method
+	ApplicationContext context =new ClassPathXmlApplicationContext("config.xml");
+    	//new String[] {"services.xml", "daos.xml"}==>More than one then use array like this 
+    	Student_Data s1=(Student_Data) context.getBean("Student_Data1");
