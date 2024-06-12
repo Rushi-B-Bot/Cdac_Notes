@@ -32,3 +32,5 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	</bean>
 
 </beans>
+ApplicationContext context =
+new ClassPathXmlApplicationContext(new String[] {"services.xml", "daos.xml"});
