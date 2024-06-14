@@ -18,5 +18,5 @@ rushikeshbhondave99@gmail.com
 
 //Image upload
 https://www.javaguides.net/2019/11/how-to-insert-image-in-mysql-database-using-java.html
-
-
+https://www.tutorialspoint.com/how-to-insert-images-in-database-using-jdbc
+https://www.tutorialspoint.com/how-to-insert-an-image-in-to-mysql-database-using-java-program
