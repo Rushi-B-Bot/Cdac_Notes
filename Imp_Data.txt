@@ -16,5 +16,7 @@ https://dotnettutorials.net/lesson/manipulators-in-cpp/
 rushikeshbhondave99@gmail.com
 21910052
 
+//Image upload
+https://www.javaguides.net/2019/11/how-to-insert-image-in-mysql-database-using-java.html
 
 
