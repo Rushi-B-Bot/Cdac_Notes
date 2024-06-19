@@ -8,6 +8,8 @@ https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEY
 https://codepen.io/shipraRock/pen/BaNNbxo?anon=true&view=pen   //shoping cart  html
 https://codepen.io/figo-kolsteren/pen/RwNargM   //CodePen Home
 Parallax Welcome Page
+
+https://codepen.io/UtopicRay/pen/GRLqaBe
 //CCEE
 https://www.geeksforgeeks.org/output-of-c-program-set-1/
 https://www.geeksforgeeks.org/cpp-variables/?ref=lbp
