@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=7m1DMYAbdiY&list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32k
 https://www.youtube.com/watch?v=3jjxRz_egNY&list=PL7Oro2kvkIzK9X9ctS7bK3VVq0zsEYQsR    //React, Spring Boot, MySql project
 https://codepen.io/shipraRock/pen/BaNNbxo?anon=true&view=pen   //shoping cart  html
 https://codepen.io/figo-kolsteren/pen/RwNargM   //CodePen Home
-Parallax Welcome Page
+https://codepen.io/figo-kolsteren/pen/RwNargM //Parallax Welcome Page
 
 https://codepen.io/UtopicRay/pen/GRLqaBe
 //CCEE
