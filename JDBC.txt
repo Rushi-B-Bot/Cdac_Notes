@@ -3,6 +3,8 @@ final String pass = "Rushikesh@5046";
 final String sqlcon = "jdbc:mysql://localhost:3306/rushi";
 
 
+https://maps.app.goo.gl/WVZskhtEHSZfwuGs6   ==><Kokan Fusion Food Adda - Best Restaurant in Malvan
+
 // war error
 
 <build>
